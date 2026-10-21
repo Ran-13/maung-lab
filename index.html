@@ -280,9 +280,9 @@ const MODEL=(function(){
     if(p1){const {h,d,a}=p1;
       if(h>=.5)pick={label:m.home+" နိုင်",code:"1",side:"h",p:h};
       else if(a>=.5)pick={label:m.away+" နိုင်",code:"2",side:"a",p:a};
-      else if(Math.abs(h-a)<.05)pick={label:"အားချင်းတူ",code:"—",side:"x",p:null};
-      else if(h>a)pick={label:m.home+" (သို့) သရေ",code:"1X",side:"h",p:h+d,dc:true};
-      else pick={label:m.away+" (သို့) သရေ",code:"X2",side:"a",p:a+d,dc:true};
+      else if(Math.abs(h-a)<.05)pick={label:"အင်အား တူညီ",code:"—",side:"x",p:null};
+      else if(h>a)pick={label:m.home+" မရှုံး",code:"1X",side:"h",p:h+d,dc:true};
+      else pick={label:m.away+" မရှုံး",code:"X2",side:"a",p:a+d,dc:true};
     }
     let score=null,top=null,o25=null,btts=null,goalsLad=null;
     if(M){
@@ -414,7 +414,7 @@ const icon={
 /* ---------- bars ---------- */
 function topBar(){
   if(detail){const m=findMatch(detail);const f=FAV.has(detail);
-    $("bar").innerHTML=`<button class="ib back" id="backBtn" aria-label="နောက်သို့">${icon.back}</button><div class="bar-t"><b>${m?esc(m.home)+" vs "+esc(m.away):""}</b><small>${m?esc(m.league||"")+" · "+dm(m.kickoff)+" "+hm(m.kickoff):""}</small></div><span class="sp"></span><button class="ib${f?" on":""}" id="favBtn" aria-pressed="${f}" aria-label="★ မှတ်">${icon.star(f)}</button>`;
+    $("bar").innerHTML=`<button class="ib back" id="backBtn" aria-label="နောက်သို့">${icon.back}</button><div class="bar-t"><b>${m?esc(m.home)+" vs "+esc(m.away):""}</b><small>${m?esc(m.league||"")+" · "+dm(m.kickoff)+" "+hm(m.kickoff):""}</small></div><span class="sp"></span><button class="ib${f?" on":""}" id="favBtn" aria-pressed="${f}" aria-label="ဒီပွဲကို မှတ်ထားမယ်">${icon.star(f)}</button>`;
     $("backBtn").onclick=closeDetail;
     $("favBtn").onclick=()=>{FAV.has(detail)?FAV.delete(detail):FAV.add(detail);saveFav();topBar();};
     return;}
@@ -433,7 +433,7 @@ function leagueStrip(ms){
   if(league!=="all"&&league!=="fav"&&!ls.includes(league))league="all";
   if(ls.length<2&&!hasFav)return "";
   const chips=["all",...(hasFav?["fav"]:[]),...(ls.length>1?ls:[])];
-  return `<div class="strip">${chips.map(l=>`<button class="chip" aria-pressed="${l===league}" data-lg="${esc(l)}">${l==="all"?"အားလုံး":l==="fav"?"★ မှတ်ထား":esc(l)}</button>`).join("")}</div>`;
+  return `<div class="strip">${chips.map(l=>`<button class="chip" aria-pressed="${l===league}" data-lg="${esc(l)}">${l==="all"?"အားလုံး":l==="fav"?"★ မှတ်ထားတဲ့ပွဲ":esc(l)}</button>`).join("")}</div>`;
 }
 
 /* ---------- list ---------- */
@@ -444,21 +444,21 @@ function rowHtml(m,showDate){
   const star=FAV.has(uid(m));
   const val=Object.keys(ODDS[uid(m)]||{}).some(k=>{const mk=a.markets.find(x=>x.key===k);return mk&&ev(mk,ODDS[uid(m)][k])>0});
   return `<button class="row" data-m="${esc(uid(m))}">
-    <span class="t">${fin?"FT":hm(m.kickoff)}${showDate?`<small>${dm(m.kickoff)}</small>`:!fin&&started?"<small>စပြီး</small>":""}</span>
+    <span class="t">${fin?"FT":hm(m.kickoff)}${showDate?`<small>${dm(m.kickoff)}</small>`:!fin&&started?"<small>စနေပြီ</small>":""}</span>
     <span class="tm"><span class="${favH?"fav":""}">${esc(m.home)}</span><span class="${favA?"fav":""}">${esc(m.away)}</span></span>
     <span class="r">${star?'<span class="star">★</span>':""}${val?'<span class="vbadge">V</span>':""}${a.pick?`<span class="pk${a.pick.p==null||a.pick.dc?" weak":""}">${esc(a.pick.code)}</span>`:""}
       ${fin?`<span class="sc final">${r.hs}-${r.as}</span>${g&&g.result!=null?`<span class="mark ${g.result?"y":"n"}">${g.result?"✓":"✕"}</span>`:""}`:a.score?`<span class="sc">${a.score.i}-${a.score.j}</span>`:""}</span>
   </button>`;
 }
-function searchBox(){return searchOpen?`<div class="search"><input id="q" type="search" placeholder="အသင်းနာမည် ရိုက်ရှာပါ" value="${esc(query)}" autocomplete="off"></div>`:"";}
+function searchBox(){return searchOpen?`<div class="search"><input id="q" type="search" placeholder="အသင်းနာမည်နဲ့ ရှာပါ" value="${esc(query)}" autocomplete="off"></div>`:"";}
 function screenMatches(){
   if(searchOpen&&query.trim()){
     const q=query.trim().toLowerCase();
     const ms=allMatches().filter(m=>(m.home+" "+m.away+" "+(m.league||"")).toLowerCase().includes(q)).sort((x,y)=>String(x.kickoff).localeCompare(String(y.kickoff)));
-    return `${searchBox()}${ms.length?`<section class="sec"><div class="sec-h">ရှာတွေ့သည် ${ms.length}</div><div class="group">${ms.map(m=>rowHtml(m,true)).join("")}</div></section>`:`<div class="empty"><b>မတွေ့ပါ</b></div>`}`;
+    return `${searchBox()}${ms.length?`<section class="sec"><div class="sec-h">${ms.length} ပွဲ တွေ့ပါတယ်</div><div class="group">${ms.map(m=>rowHtml(m,true)).join("")}</div></section>`:`<div class="empty"><b>ရှာမတွေ့ပါ</b></div>`}`;
   }
   const d=curDay();
-  if(!d)return `${searchBox()}${dayStrip()}<div class="empty"><b>ပွဲစဉ် မရှိသေးပါ</b>နေ့စဉ် update ဝင်လာရင် ပေါ်လာပါမယ်</div>`;
+  if(!d)return `${searchBox()}${dayStrip()}<div class="empty"><b>ပွဲစဉ် မရှိသေးပါ</b>ပွဲစဉ်အသစ်တွေ မကြာခင် ဝင်လာပါမယ်</div>`;
   let ms=(d.matches||[]).map(m=>Object.assign({_d:d.date},m));
   const lgHtml=leagueStrip(ms);
   if(league==="fav")ms=ms.filter(m=>FAV.has(uid(m)));else if(league!=="all")ms=ms.filter(m=>m.league===league);
@@ -474,16 +474,16 @@ function screenTop(){
     tips(m,a).forEach(t=>{if(t.p>=.6&&1/t.p>=1.2)list.push(Object.assign({m},t));});
     const o=ODDS[uid(m)]||{};a.markets.forEach(mk=>{if(o[mk.key]){const e=ev(mk,o[mk.key]);if(e>0)vals.push({m,mk,o:o[mk.key],e});}});});
   list.sort((x,y)=>y.p-x.p);vals.sort((x,y)=>y.e-x.e);
-  const valHtml=vals.length?`<section class="sec"><div class="sec-h">သင့် 1xBet odds အရ Value</div><div class="group">${vals.map(v=>`<button class="tip" data-m="${esc(uid(v.m))}"><span class="n"><small>${esc(v.m.home)} vs ${esc(v.m.away)} · ${hm(v.m.kickoff)}</small><b>${esc(v.mk.sel)} @${v.o}</b></span><span class="p"><b class="pos">+${Math.round(v.e*100)}%</b><small>EV</small></span></button>`).join("")}</div></section>`:"";
-  const body=list.length?`<div class="group">${list.slice(0,15).map(t=>`<button class="tip" data-m="${esc(uid(t.m))}"><span class="n"><small>${esc(t.m.home)} vs ${esc(t.m.away)} · ${hm(t.m.kickoff)}</small><b>${esc(t.mk)} · ${esc(t.t)}</b></span><span class="p"><b>${pct(t.p)}</b><small>@${fair(t.p)}</small></span></button>`).join("")}</div>`:`<div class="empty"><b>ဖြစ်နိုင်ခြေ ၆၀% အထက် ရွေးချယ်မှု မရှိပါ</b></div>`;
+  const valHtml=vals.length?`<section class="sec"><div class="sec-h">သင်ထည့်ထားတဲ့ odds အရ value ရှိတာ</div><div class="group">${vals.map(v=>`<button class="tip" data-m="${esc(uid(v.m))}"><span class="n"><small>${esc(v.m.home)} vs ${esc(v.m.away)} · ${hm(v.m.kickoff)}</small><b>${esc(v.mk.sel)} @${v.o}</b></span><span class="p"><b class="pos">+${Math.round(v.e*100)}%</b><small>EV</small></span></button>`).join("")}</div></section>`:"";
+  const body=list.length?`<div class="group">${list.slice(0,15).map(t=>`<button class="tip" data-m="${esc(uid(t.m))}"><span class="n"><small>${esc(t.m.home)} vs ${esc(t.m.away)} · ${hm(t.m.kickoff)}</small><b>${esc(t.mk)} · ${esc(t.t)}</b></span><span class="p"><b>${pct(t.p)}</b><small>@${fair(t.p)}</small></span></button>`).join("")}</div>`:`<div class="empty"><b>ဖြစ်နိုင်ခြေ ၆၀% ကျော်တဲ့ ရွေးချယ်မှု မရှိသေးပါ</b></div>`;
   return `${dayStrip()}${valHtml}<section class="sec"><div class="sec-h">ဖြစ်နိုင်ခြေ အမြင့်ဆုံး</div>${body}</section>`;
 }
 function screenRecord(){
-  const keys=["result","ah","goals","corners","fouls","cards","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",cards:"ဝါကတ်",score:"ရလဒ်အတိအကျ"};
+  const keys=["result","ah","goals","corners","fouls","cards","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",cards:"ဝါကတ်",score:"ဂိုးရလဒ် အတိအကျ"};
   const tot={};keys.forEach(k=>tot[k]={h:0,n:0});
   const done=[];
   allMatches().forEach(m=>{const a=A(m),g=grade(m,a);if(!g)return;done.push({m,g});keys.forEach(k=>{if(g[k]!=null){tot[k].n++;if(g[k])tot[k].h++;}});});
-  if(!done.length)return `<div class="empty"><b>ရလဒ် မရှိသေးပါ</b>ပွဲပြီးတာနဲ့ ခန့်မှန်းချက် မှန်/မှား ဒီမှာ စုပြပါမယ်</div>`;
+  if(!done.length)return `<div class="empty"><b>ရလဒ် မရှိသေးပါ</b>ပွဲပြီးရင် ခန့်မှန်းချက် မှန်၊ မမှန် ဒီမှာ ပြပါမယ်</div>`;
   done.sort((x,y)=>String(y.m.kickoff).localeCompare(String(x.m.kickoff)));
   return `<section class="sec"><div class="sec-h">မှန်ကန်မှုနှုန်း</div><div class="stats4">${keys.map(k=>`<div class="st"><small>${lab[k]}</small><b>${tot[k].n?Math.round(tot[k].h/tot[k].n*100)+"%":"—"}</b><span>${tot[k].h}/${tot[k].n}</span></div>`).join("")}</div></section>
   <section class="sec"><div class="sec-h">ပြီးခဲ့တဲ့ ပွဲများ</div><div class="group">${done.slice(0,40).map(x=>rowHtml(x.m,true)).join("")}</div></section>`;
@@ -507,7 +507,7 @@ function detailHtml(){
   const badges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["cards","ကတ်"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
   const hero=`<div class="hero">
     <div class="vs"><div class="tn">${esc(m.home)}${form(m.form&&m.form.h)}</div>
-      <div class="big">${fin?`<b>${r.hs}-${r.as}</b><small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:`<b>${a.score?a.score.i+"-"+a.score.j:"—"}</b><small>${cd?"ကန်ရန် "+cd:"စပြီး"}</small>`}</div>
+      <div class="big">${fin?`<b>${r.hs}-${r.as}</b><small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:`<b>${a.score?a.score.i+"-"+a.score.j:"—"}</b><small>${cd?cd+" နေရင် ပွဲစမယ်":"ပွဲစနေပြီ"}</small>`}</div>
       <div class="tn">${esc(m.away)}${form(m.form&&m.form.a)}</div></div>
     ${badges}
     ${a.p1?`<div class="bar3" aria-label="1 X 2"><div class="h" style="flex:${a.p1.h}">${pct(a.p1.h)}</div><div class="d" style="flex:${a.p1.d}">${pct(a.p1.d)}</div><div class="a" style="flex:${a.p1.a}">${pct(a.p1.a)}</div></div>`:""}
@@ -535,7 +535,7 @@ function detailHtml(){
     const cmp=(lab,x,y)=>{x=N(x);y=N(y);if(x==null&&y==null)return "";const s=(x||0)+(y||0)||1;return `<div class="rw"><span class="lab">${lab}</span><span class="v">${x??"—"}</span><span class="bars"><i class="hh" style="flex:${(x||0)/s}"></i><i class="aa" style="flex:${(y||0)/s}"></i></span><span class="v">${y??"—"}</span></div>`};
     panel=`<div class="card"><div class="cmp">${cmp("xG",a.hg!=null?+a.hg.toFixed(2):null,a.ag!=null?+a.ag.toFixed(2):null)}${cmp("ဂိုးသွင်း",h.gf,w.gf)}${cmp("ဂိုးပေး",h.ga,w.ga)}${cmp("Corners",h.corners,w.corners)}${cmp("Fouls",h.fouls,w.fouls)}</div></div>
       ${(m.ref&&m.ref.name)||m.venue||fin?`<div class="card"><dl class="kv">
-        ${m.ref&&m.ref.name?`<dt>ဒိုင်</dt><dd>${esc(m.ref.name)}</dd><dt>Fouls · ကတ် / ပွဲ</dt><dd>${N(m.ref.fouls)??"—"} · ${N(m.ref.yellows)??"—"}</dd>`:""}
+        ${m.ref&&m.ref.name?`<dt>ဒိုင်</dt><dd>${esc(m.ref.name)}</dd><dt>ဒိုင်ရဲ့ fouls · ကတ် (ပွဲတိုင်း)</dt><dd>${N(m.ref.fouls)??"—"} · ${N(m.ref.yellows)??"—"}</dd>`:""}
         ${m.venue?`<dt>ကွင်း</dt><dd>${esc(m.venue)}</dd>`:""}
         ${fin&&N(r.corners)!=null?`<dt>Corners</dt><dd>${r.corners}</dd>`:""}
         ${fin&&N(r.fouls)!=null?`<dt>Fouls</dt><dd>${r.fouls}</dd>`:""}
