@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="ဘောလုံးပွဲ ခန့်မှန်းချက် — ရလဒ်၊ ဘော်ဒီ၊ ဂိုးပေါင်း၊ corners၊ fouls။ နေ့စဉ် update။">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Maung Lab">
+<meta property="og:description" content="ဘောလုံးပွဲ ခန့်မှန်းချက် — ရလဒ်၊ ဘော်ဒီ၊ ဂိုးပေါင်း၊ corners၊ fouls။ နေ့စဉ် update။">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313201a'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%23ffffff'%3EML%3C/text%3E%3C/svg%3E">
+<title>Maung Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: phone-style app — top bar, one scrolling screen, fixed bottom nav; a match opens a full detail screen */
+:root{
+  --bg:#f2f4f3; --card:#ffffff; --ink:#13201a; --muted:#6b7972; --line:#e2e8e5; --soft:#f5f7f6;
+  --accent:#17734a; --accent-soft:#e2efe7; --amber:#a3610b; --amber-soft:#fbf0de; --miss:#b23a2e; --miss-soft:#f9e3e0;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Noto Sans Myanmar","Myanmar Text","Padauk",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.55;margin:0}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:720px;margin:0 auto}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+.bar .in{display:flex;align-items:center;gap:10px;min-height:52px}
+.logo{font-family:var(--f-display);font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:.01em}
+.logo span{color:var(--accent)}
+.bar .sp{flex:1}
+.upd{font-size:11.5px;color:var(--muted)}
+.bar-t{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.bar-t b{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-t small{font-size:12px;color:var(--muted)}
+
+/* strips */
+.strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:10px 2px}
+.strip::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:5px 12px;display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.day b{font-family:var(--f-display);font-size:17px;font-weight:600}
+.day small{font-size:11px;color:var(--muted)}
+.day[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.day[aria-selected="true"] small{color:var(--card);opacity:.7}
+.chip{flex:0 0 auto;border-radius:999px;padding:3px 11px;font-size:12.5px;color:var(--muted);border:1px solid transparent;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+
+main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
+.sec{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.sec-h{font-family:var(--f-display);font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-inline:2px}
+.group{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+
+/* list row */
+.row{width:100%;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 14px;text-align:left;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row:hover{background:var(--soft)}
+.row .t{font-family:var(--f-mono);font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.3}
+.row .t small{display:block;font-weight:400;font-size:10.5px}
+.row .tm{display:flex;flex-direction:column;min-width:0;font-weight:500;line-height:1.35}
+.row .tm span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .tm span.fav{font-weight:700}
+.row .r{display:flex;align-items:center;gap:8px}
+.pk{font-family:var(--f-display);font-weight:700;font-size:14px;border-radius:7px;padding:1px 8px;background:var(--ink);color:var(--card);min-width:34px;text-align:center}
+.pk.weak{background:var(--soft);color:var(--muted)}
+.sc{font-family:var(--f-mono);font-weight:600;font-size:15px;min-width:40px;text-align:right}
+.sc.final{color:var(--ink)}
+.mark{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700}
+.mark.y{background:var(--accent-soft);color:var(--accent)}
+.mark.n{background:var(--miss-soft);color:var(--miss)}
+
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:32px 16px;text-align:center;color:var(--muted);margin-top:14px}
+.empty b{display:block;color:var(--ink);font-family:var(--f-display);font-size:20px}
+
+/* detail */
+.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:12px}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;text-align:center}
+.tn{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1.1;overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:center;gap:6px}
+.big{display:flex;flex-direction:column;align-items:center;gap:2px}
+.big b{font-family:var(--f-mono);font-size:34px;font-weight:600;line-height:1}
+.big small{font-size:11px;color:var(--muted)}
+.form{display:inline-flex;gap:3px}
+.form i{font-style:normal;width:17px;height:17px;border-radius:4px;font-size:10px;display:inline-grid;place-items:center;font-family:var(--f-mono);font-weight:600}
+.form .W{background:var(--accent);color:#fff}.form .D{background:var(--line);color:var(--ink)}.form .L{background:var(--amber-soft);color:var(--amber)}
+.res{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.res span{font-size:12px;border-radius:999px;padding:1px 9px}
+.res .y{background:var(--accent-soft);color:var(--accent)}.res .n{background:var(--miss-soft);color:var(--miss)}
+
+.pickc{background:var(--ink);color:var(--card);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.pickc .l{flex:1;min-width:0;display:flex;flex-direction:column}
+.pickc small{font-size:11px;opacity:.7}
+.pickc b{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1.15;overflow-wrap:anywhere}
+.pickc .p{text-align:right;display:flex;flex-direction:column}
+.pickc .p b{font-family:var(--f-mono);font-size:20px}
+
+.bar3{display:flex;height:30px;border-radius:9px;overflow:hidden;font-family:var(--f-mono);font-size:12px;font-weight:600}
+.bar3 div{display:grid;place-items:center;min-width:34px;white-space:nowrap}
+.bar3 .h{background:var(--accent);color:#fff}.bar3 .d{background:var(--line)}.bar3 .a{background:var(--amber);color:#fff}
+.bar3-l{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:4px}
+
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px;margin-top:12px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 53px);z-index:4}
+.seg button{border-radius:9px;padding:7px 0;font-weight:600;font-size:13px;color:var(--muted)}
+.seg button[aria-selected="true"]{background:var(--ink);color:var(--card)}
+.panel{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h3{margin:0 0 8px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.note{line-height:1.8;font-size:14px}
+.mk{border-top:1px solid var(--line)}
+.card h3+.mk{border-top:0}
+.mk-h{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;text-align:left}
+.mk.open .mk-h{padding-bottom:6px}
+.mk-b{display:grid;grid-template-columns:auto 110px minmax(0,1fr);gap:6px 10px;align-items:center;padding:0 0 12px;font-size:12.5px}
+.mk-b label{color:var(--muted)}
+.oin{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:7px 9px;font-family:var(--f-mono);font-size:15px;width:100%}
+.mk-r{grid-column:1/-1;color:var(--muted)}
+@media (min-width:520px){.mk-r{grid-column:auto}}
+.pos{color:var(--accent)}.neg{color:var(--miss)}
+.evb{font-family:var(--f-mono);font-size:12px;font-weight:600;border-radius:6px;padding:1px 6px}
+.evb.pos{background:var(--accent-soft)}.evb.neg{background:var(--miss-soft)}
+.mk .n{display:flex;flex-direction:column;min-width:0}
+.mk .n small{color:var(--muted);font-size:11.5px}
+.mk .n b{font-weight:600}
+.mk .pp{font-family:var(--f-mono);font-weight:600;font-size:15px;text-align:right}
+.mk .fo{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:46px;text-align:right}
+.meter{height:4px;background:var(--soft);border-radius:2px;margin-top:4px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent)}
+.scores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.scores div{background:var(--soft);border-radius:10px;padding:8px;text-align:center}
+.scores b{display:block;font-family:var(--f-mono);font-size:17px}
+.scores small{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.scores div:first-child{background:var(--accent-soft);color:var(--accent)}
+
+.cmp{display:flex;flex-direction:column;gap:12px}
+.cmp .rw{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px;align-items:center}
+.cmp .lab{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-bottom:-8px}
+.cmp .v{font-family:var(--f-mono);font-size:13px;font-weight:600}
+.cmp .v:last-child{text-align:right}
+.bars{display:flex;gap:3px;height:8px}
+.bars i{display:block;height:100%;border-radius:4px}
+.bars .hh{background:var(--accent)}.bars .aa{background:var(--amber)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-family:var(--f-mono)}
+
+.lad{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.lad th{font-weight:500;color:var(--muted);font-size:11px;text-align:right;padding:4px 0}
+.lad th:first-child,.lad td:first-child{text-align:left}
+.lad td{text-align:right;padding:6px 0;border-top:1px solid var(--line)}
+.lad tr.main td{color:var(--accent);font-weight:600}
+.src{font-size:12px;color:var(--muted);text-align:center}
+.src a{color:var(--muted)}
+
+/* top picks + record */
+.tip{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid var(--line);text-align:left}
+.tip:first-child{border-top:0}
+.tip:hover{background:var(--soft)}
+.tip .n{display:flex;flex-direction:column;min-width:0}
+.tip .n small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tip .n b{font-weight:600}
+.tip .p{text-align:right;font-family:var(--f-mono)}
+.tip .p b{display:block;font-size:16px}
+.tip .p small{font-size:11.5px;color:var(--muted)}
+.stats4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.st small{display:block;font-size:12px;color:var(--muted)}
+.st b{font-family:var(--f-mono);font-size:26px;font-weight:600}
+.st span{font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-left:4px}
+
+.ib{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted)}
+.ib:hover{background:var(--soft)}
+.ib.on{color:var(--amber)}
+.back{margin-left:-8px;color:var(--ink)}
+.star{color:var(--amber);font-size:13px}
+.vbadge{font-family:var(--f-mono);font-size:10.5px;font-weight:600;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:0 5px}
+.search{padding-top:10px}
+.search input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font:inherit}
+.cd{text-align:center;font-size:12.5px;color:var(--muted)}
+.cd b{color:var(--ink)}
+.tw{overflow-x:auto}
+.chat{display:flex;flex-direction:column;gap:10px}
+.msgs{display:flex;flex-direction:column;gap:8px;max-height:56vh;overflow-y:auto}
+.msg{max-width:88%;border-radius:14px;padding:8px 12px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.user{align-self:flex-end;background:var(--ink);color:var(--card);border-bottom-right-radius:4px}
+.msg.assistant{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
+.msg.think{color:var(--muted);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+.sugg{display:flex;flex-wrap:wrap;gap:6px}
+.chip2{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;background:var(--soft)}
+.chip2:hover{border-color:var(--ink)}
+.ask{display:flex;gap:6px}
+.ask input{flex:1;min-width:0;border:1px solid var(--line);background:var(--soft);border-radius:12px;padding:9px 12px;font:inherit}
+.send{background:var(--accent);color:#fff;border-radius:12px;padding:0 16px;font-weight:600}
+#stopAi{background:var(--miss)}
+.err{font-size:12.5px;color:var(--miss)}
+@media (prefers-reduced-motion:reduce){.msg.think{animation:none}}
+.foot{font-size:11.5px;color:var(--muted);text-align:center;margin:18px 0 0}
+/* bottom nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav.tabs .in{display:grid;grid-template-columns:repeat(3,1fr)}
+nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 9px;font-size:11.5px;color:var(--muted)}
+nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs button[aria-current="true"]{color:var(--accent);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.screen{animation:in .18s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+</style>
+
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="bar"><div class="in g" id="bar"></div></header>
+<main class="g"><div class="in" id="view"><div class="empty"><b>ဖွင့်နေပါတယ်</b></div></div></main>
+<nav class="tabs" aria-label="App"><div class="in g">
+  <button data-tab="matches" aria-current="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/><path d="M12 3v4M21 10l-5 0M3 10h5M15.5 14.5l2.5 4M8.5 14.5l-2.5 4"/></svg>ပွဲစဉ်</button>
+  <button data-tab="top"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Top Picks</button>
+  <button data-tab="record"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>မှတ်တမ်း</button>
+</div></nav>
+
+<script>
+/* ================= model (pure) ================= */
+const MODEL=(function(){
+  const N=v=>{const n=Number(v);return Number.isFinite(n)?n:null};
+  const pois=(k,l)=>{let t=Math.exp(-l);for(let i=1;i<=k;i++)t*=l/i;return t};
+  function nbOver(line,mean,vr){ // negative binomial, variance = vr*mean
+    const r=mean/(vr-1),p=r/(r+mean);let P=Math.pow(p,r),cdf=P;const k=Math.floor(line);
+    for(let x=1;x<=k;x++){P=P*(x+r-1)/x*(1-p);cdf+=P;}return Math.max(0,Math.min(1,1-cdf));
+  }
+  function normCdf(z){const t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2);const q=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-q:q;}
+  const foulsOver=(line,mean)=>1-normCdf((line-mean)/(1.35*Math.sqrt(mean)));
+  const cornersOver=(line,mean)=>nbOver(line,mean,1.3);
+  const mainLine=m=>Math.round(m-0.5)+0.5;
+  const norm3=o=>{if(!o)return null;let h=N(o.h),d=N(o.d),a=N(o.a);if(h==null||d==null||a==null)return null;const s=h+d+a;return s>0?{h:h/s,d:d/s,a:a/s}:null};
+  const mkt=o=>{if(!o)return null;const h=N(o.h),d=N(o.d),a=N(o.a);if(!(h>1&&d>1&&a>1))return null;return norm3({h:1/h,d:1/d,a:1/a})};
+  function matrix(hg,ag){
+    const rho=-0.08,M=[];let s=0;
+    for(let i=0;i<=8;i++)for(let j=0;j<=8;j++){
+      let t=1;if(i===0&&j===0)t=1-hg*ag*rho;else if(i===0&&j===1)t=1+hg*rho;else if(i===1&&j===0)t=1+ag*rho;else if(i===1&&j===1)t=1-rho;
+      const p=pois(i,hg)*pois(j,ag)*Math.max(t,0);M.push({i,j,p});s+=p;}
+    M.forEach(c=>c.p/=s);return M;
+  }
+  const outc=c=>c.i>c.j?"h":c.i<c.j?"a":"d";
+  function analyze(m){
+    const e=m.exp||{},hg=N(e.hg),ag=N(e.ag);
+    const pm=norm3(m.p),pk=mkt(m.odds);
+    let M=(hg!=null&&ag!=null)?matrix(hg,ag):null;
+    let p1=null;
+    if(pm&&pk)p1={h:.6*pk.h+.4*pm.h,d:.6*pk.d+.4*pm.d,a:.6*pk.a+.4*pm.a};
+    else p1=pk||pm;
+    if(M){
+      const S={h:0,d:0,a:0};M.forEach(c=>S[outc(c)]+=c.p);
+      if(p1){M.forEach(c=>{const o=outc(c);c.p=S[o]>0?c.p*p1[o]/S[o]:0});}else p1=S;
+      M.sort((x,y)=>y.p-x.p);
+    }
+    let pick=null;
+    if(p1){const {h,d,a}=p1;
+      if(h>=.5)pick={label:m.home+" နိုင်",code:"1",side:"h",p:h};
+      else if(a>=.5)pick={label:m.away+" နိုင်",code:"2",side:"a",p:a};
+      else if(Math.abs(h-a)<.05)pick={label:"အားချင်းတူ",code:"—",side:"x",p:null};
+      else if(h>a)pick={label:m.home+" (သို့) သရေ",code:"1X",side:"h",p:h+d,dc:true};
+      else pick={label:m.away+" (သို့) သရေ",code:"X2",side:"a",p:a+d,dc:true};
+    }
+    let score=null,top=null,o25=null,btts=null,goalsLad=null;
+    if(M){
+      const want=pick&&pick.side!=="x"?pick.side:null;
+      score=(want?M.find(c=>outc(c)===want):null)||M[0];
+      top=M.slice(0,6);
+      const over=L=>M.reduce((s,c)=>s+(c.i+c.j>L?c.p:0),0);
+      o25=over(2.5);btts=M.reduce((s,c)=>s+(c.i>0&&c.j>0?c.p:0),0);
+      goalsLad=[0.5,1.5,2.5,3.5,4.5].map(L=>({L,po:over(L)}));
+    }
+    const cm=N(e.corners),fm=N(e.fouls);
+    const side=(po,L)=>po>=.5?{t:"Over "+L,p:po,side:"O",L}:{t:"Under "+L,p:1-po,side:"U",L};
+    const corners=cm!=null?side(cornersOver(mainLine(cm),cm),mainLine(cm)):null;
+    const fouls=fm!=null?side(foulsOver(mainLine(fm),fm),mainLine(fm)):null;
+    const lad=(mean,fn,step)=>{const c=mainLine(mean),o=[];for(let i=-2;i<=2;i++){const L=c+i*step;if(L>0)o.push({L,po:fn(L,mean),main:i===0});}return o};
+    // Asian handicap (ဘော်ဒီ) and Asian goal line (ဂိုးပေါင်း)
+    let ah=null,gl=null;
+    if(M){
+      const settle=(H,val)=>{const q=Math.abs(Math.round(H*4))%2===1,subs=q?[H-.25,H+.25]:[H];let W=0,L=0;
+        for(const c of M)for(const s of subs){const d=val(c)+s,f=c.p/subs.length;if(d>0)W+=f;else if(d<0)L+=f;}return {W,L}};
+      const ahAt=H=>{const r=settle(H,c=>c.i-c.j);return {H,hW:r.W,hL:r.L,aW:r.L,aL:r.W}};
+      const glAt=T=>{const r=settle(-T,c=>c.i+c.j);return {T,oW:r.W,oL:r.L,uW:r.L,uL:r.W}};
+      let best=null;for(let H=-3.5;H<=3.5001;H+=.25){const x=ahAt(Math.round(H*4)/4),pe=x.hW/(x.hW+x.hL||1);if(!best||Math.abs(pe-.5)<Math.abs(best.pe-.5))best={H:x.H,pe};}
+      const H0=best.H;ah={main:H0,lad:[-.5,-.25,0,.25,.5].map(k=>Object.assign(ahAt(H0+k),{main:k===0}))};
+      let bt=null;for(let T=.5;T<=6.0001;T+=.25){const x=glAt(Math.round(T*4)/4),pe=x.oW/(x.oW+x.oL||1);if(!bt||Math.abs(pe-.5)<Math.abs(bt.pe-.5))bt={T:x.T,pe};}
+      const T0=bt.T;gl={main:T0,lad:[-.5,-.25,0,.25,.5].map(k=>T0+k).filter(T=>T>0).map(T=>Object.assign(glAt(T),{main:T===T0}))};
+    }
+    // unified market list: W = stake share that wins, L = share that loses (pushes excluded)
+    const mk=[];
+    if(pick&&pick.p!=null)mk.push({key:"res",title:"ရလဒ်",sel:pick.label,W:pick.p,L:1-pick.p});
+    if(ah){const r=ah.lad.find(x=>x.main);const hs=r.hW/(r.hW+r.hL);const homeSide=hs>=.5;
+      const ln=homeSide?r.H:-r.H;mk.push({key:"ah",title:"ဘော်ဒီ (Asian Handicap)",sel:`${homeSide?m.home:m.away} ${fmtL(ln)}`,hH:r.H,homeSide,W:homeSide?r.hW:r.aW,L:homeSide?r.hL:r.aL});}
+    if(gl){const r=gl.lad.find(x=>x.main);const ov=r.oW/(r.oW+r.oL)>=.5;mk.push({key:"gl",title:"ဂိုးပေါင်း (Asian)",sel:`${ov?"Over":"Under"} ${r.T}`,W:ov?r.oW:r.uW,L:ov?r.oL:r.uL});}
+    if(o25!=null)mk.push({key:"o25",title:"ဂိုး 2.5",sel:o25>=.5?"Over 2.5":"Under 2.5",W:Math.max(o25,1-o25),L:Math.min(o25,1-o25)});
+    if(btts!=null)mk.push({key:"btts",title:"နှစ်သင်းလုံး ဂိုးသွင်း",sel:btts>=.5?"Yes":"No",W:Math.max(btts,1-btts),L:Math.min(btts,1-btts)});
+    if(corners)mk.push({key:"c",title:`Corners · ခန့်မှန်း ${cm.toFixed(1)}`,sel:corners.t,W:corners.p,L:1-corners.p});
+    if(fouls)mk.push({key:"f",title:`Fouls · ခန့်မှန်း ${fm.toFixed(1)}`,sel:fouls.t,W:fouls.p,L:1-fouls.p});
+    mk.forEach(x=>{x.p=x.W/(x.W+x.L||1);x.fair=x.W>0?1+x.L/x.W:null;});
+    return {p1,pm,pk,pick,score,top,o25,btts,goalsLad,ah,gl,markets:mk,
+      corners,fouls,cm,fm,hg,ag,
+      cLad:cm!=null?lad(cm,cornersOver,1):null,fLad:fm!=null?lad(fm,foulsOver,2):null};
+  }
+  function fmtL(x){if(Math.abs(x)<1e-9)return "0";return (x>0?"+":"")+(Math.round(x*100)/100);}
+  const ev=(mkObj,odds)=>mkObj.W*(odds-1)-mkObj.L;
+  function tips(m,A){return A.markets.filter(x=>x.key!=="ah"&&x.key!=="gl").map(x=>({mk:x.title.split(" · ")[0],t:x.sel,p:x.p,key:x.key}));}
+  function grade(m,A){
+    const r=m.res;if(!r||N(r.hs)==null||N(r.as)==null)return null;
+    const hs=N(r.hs),as=N(r.as),o=hs>as?"h":hs<as?"a":"d",g={};
+    if(A.pick&&A.pick.side!=="x")g.result=A.pick.dc?(o===A.pick.side||o==="d"):o===A.pick.side;
+    if(A.o25!=null)g.goals=(A.o25>=.5)===(hs+as>2.5);
+    if(A.score)g.score=A.score.i===hs&&A.score.j===as;
+    if(A.corners&&N(r.corners)!=null)g.corners=A.corners.side==="O"?N(r.corners)>A.corners.L:N(r.corners)<A.corners.L;
+    if(A.fouls&&N(r.fouls)!=null)g.fouls=A.fouls.side==="O"?N(r.fouls)>A.fouls.L:N(r.fouls)<A.fouls.L;
+    const a=A.markets.find(x=>x.key==="ah");
+    if(a){const q=Math.abs(Math.round(a.hH*4))%2===1,subs=q?[a.hH-.25,a.hH+.25]:[a.hH];let s=0;subs.forEach(h=>{const d=(hs-as)+h;s+=d>0?1:d<0?-1:0});if(!a.homeSide)s=-s;if(s!==0)g.ah=s>0;}
+    return g;
+  }
+  return {analyze,tips,grade,ev,fmtL,N};
+})();
+if(typeof module!=="undefined")module.exports=MODEL;
+
+/* ================= app ================= */
+(function(){
+if(typeof document==="undefined")return;
+const {analyze,tips,grade,ev,fmtL,N}=MODEL;
+const TZ="Asia/Rangoon";
+const ORDER=["Champions League","Europa League","Conference League","Premier League","La Liga","Serie A","Bundesliga","Ligue 1","Eredivisie","Primeira Liga","Championship","Süper Lig","Belgian Pro League","Scottish Premiership","Saudi Pro League","MLS","Brasileirão","Liga Profesional"];
+let DAYS=[],sel=null,league="all",tab="matches",detail=null,dtab="pred",scrollY=0,query="",searchOpen=false,openMk=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pct=p=>Math.round(p*100)+"%";
+const fair=p=>p>0.02?(1/p).toFixed(2):"—";
+const fmt=(iso,o)=>{try{return new Intl.DateTimeFormat("en-GB",Object.assign({timeZone:TZ},o)).format(new Date(iso))}catch(e){return ""}};
+const hm=iso=>fmt(iso,{hour:"2-digit",minute:"2-digit"});
+const dm=iso=>fmt(iso,{day:"numeric",month:"short"});
+const keyNow=()=>{try{return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/London"}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}};
+const addDays=(k,n)=>{const d=new Date(k+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
+const dayName=k=>{const t=keyNow();if(k===t)return "ယနေ့";if(k===addDays(t,1))return "မနက်ဖြန်";if(k===addDays(t,-1))return "မနေ့က";return new Date(k+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"short",timeZone:"UTC"})};
+const dayNum=k=>new Date(k+"T12:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",timeZone:"UTC"});
+const lgRank=l=>{const i=ORDER.indexOf(l);return i<0?99:i};
+const CONF={low:"ယုံကြည်မှု နည်း",medium:"ယုံကြည်မှု အလယ်အလတ်",high:"ယုံကြည်မှု မြင့်"};
+const form=f=>`<span class="form">${String(f||"").toUpperCase().replace(/[^WDL]/g,"").slice(-5).split("").map(x=>`<i class="${x}">${x}</i>`).join("")}</span>`;
+const until=iso=>{const ms=new Date(iso)-new Date();if(!(ms>0))return null;const h=Math.floor(ms/36e5),m=Math.floor(ms%36e5/6e4);return h>=24?Math.floor(h/24)+" ရက်":h?`${h}h ${m}m`:`${m}m`;};
+
+/* per-viewer storage */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let FAV=new Set(store.get("ml.fav",[]));
+let ODDS=store.get("ml.odds",{});
+const saveFav=()=>store.set("ml.fav",[...FAV]);
+const saveOdds=()=>store.set("ml.odds",ODDS);
+
+const cache=new Map();
+function A(m){const k=JSON.stringify([m.p,m.odds,m.exp]);const id=m.id+"|"+m._d;let v=cache.get(id);if(!v||v.k!==k){v={k,a:analyze(m)};cache.set(id,v);}return v.a;}
+const curDay=()=>DAYS.find(d=>d.date===sel);
+const allMatches=()=>DAYS.flatMap(d=>(d.matches||[]).map(m=>Object.assign({_d:d.date},m)));
+const uid=m=>m.id+"|"+m._d;
+const findMatch=id=>allMatches().find(m=>uid(m)===id);
+const FOOT=`<p class="foot">ခန့်မှန်းချက်များသာ ဖြစ်ပြီး အာမခံချက် မဟုတ်ပါ · 18+ · ဆုံးရှုံးခံနိုင်သလောက်သာ</p>`;
+const icon={
+  back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+  star:f=>`<svg width="21" height="21" viewBox="0 0 24 24" fill="${f?"currentColor":"none"}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>`
+};
+
+/* ---------- bars ---------- */
+function topBar(){
+  if(detail){const m=findMatch(detail);const f=FAV.has(detail);
+    $("bar").innerHTML=`<button class="ib back" id="backBtn" aria-label="နောက်သို့">${icon.back}</button><div class="bar-t"><b>${m?esc(m.home)+" vs "+esc(m.away):""}</b><small>${m?esc(m.league||"")+" · "+dm(m.kickoff)+" "+hm(m.kickoff):""}</small></div><span class="sp"></span><button class="ib${f?" on":""}" id="favBtn" aria-pressed="${f}" aria-label="★ မှတ်">${icon.star(f)}</button>`;
+    $("backBtn").onclick=closeDetail;
+    $("favBtn").onclick=()=>{FAV.has(detail)?FAV.delete(detail):FAV.add(detail);saveFav();topBar();};
+    return;}
+  const d=curDay();
+  $("bar").innerHTML=`<div class="logo">Maung<span>Lab</span></div><span class="sp"></span><span class="upd">${d&&d.updatedAt&&!searchOpen?"Update "+dm(d.updatedAt)+" "+hm(d.updatedAt):""}</span>${tab==="matches"?`<button class="ib${searchOpen?" on":""}" id="srchBtn" aria-label="အသင်းရှာ">${icon.search}</button>`:""}`;
+  const sb=$("srchBtn");if(sb)sb.onclick=()=>{searchOpen=!searchOpen;if(!searchOpen)query="";render();if(searchOpen){const i=$("q");i&&i.focus();}};
+}
+function dayStrip(){
+  return `<div class="strip" role="tablist">${DAYS.map(d=>`<button class="day" role="tab" aria-selected="${d.date===sel}" data-day="${esc(d.date)}"><small>${dayName(d.date)}</small><b>${dayNum(d.date)}</b></button>`).join("")}</div>`;
+}
+function leagueStrip(ms){
+  const ls=[...new Set(ms.map(m=>m.league).filter(Boolean))].sort((a,b)=>lgRank(a)-lgRank(b));
+  const hasFav=ms.some(m=>FAV.has(uid(m)));
+  if(league==="fav"&&!hasFav)league="all";
+  if(league!=="all"&&league!=="fav"&&!ls.includes(league))league="all";
+  if(ls.length<2&&!hasFav)return "";
+  const chips=["all",...(hasFav?["fav"]:[]),...(ls.length>1?ls:[])];
+  return `<div class="strip">${chips.map(l=>`<button class="chip" aria-pressed="${l===league}" data-lg="${esc(l)}">${l==="all"?"အားလုံး":l==="fav"?"★ မှတ်ထား":esc(l)}</button>`).join("")}</div>`;
+}
+
+/* ---------- list ---------- */
+function rowHtml(m,showDate){
+  const a=A(m),r=m.res,fin=r&&N(r.hs)!=null;const g=fin?grade(m,a):null;
+  const favH=a.pick&&a.pick.side==="h",favA=a.pick&&a.pick.side==="a";
+  const started=m.kickoff&&new Date(m.kickoff)<new Date();
+  const star=FAV.has(uid(m));
+  const val=Object.keys(ODDS[uid(m)]||{}).some(k=>{const mk=a.markets.find(x=>x.key===k);return mk&&ev(mk,ODDS[uid(m)][k])>0});
+  return `<button class="row" data-m="${esc(uid(m))}">
+    <span class="t">${fin?"FT":hm(m.kickoff)}${showDate?`<small>${dm(m.kickoff)}</small>`:!fin&&started?"<small>စပြီး</small>":""}</span>
+    <span class="tm"><span class="${favH?"fav":""}">${esc(m.home)}</span><span class="${favA?"fav":""}">${esc(m.away)}</span></span>
+    <span class="r">${star?'<span class="star">★</span>':""}${val?'<span class="vbadge">V</span>':""}${a.pick?`<span class="pk${a.pick.p==null||a.pick.dc?" weak":""}">${esc(a.pick.code)}</span>`:""}
+      ${fin?`<span class="sc final">${r.hs}-${r.as}</span>${g&&g.result!=null?`<span class="mark ${g.result?"y":"n"}">${g.result?"✓":"✕"}</span>`:""}`:a.score?`<span class="sc">${a.score.i}-${a.score.j}</span>`:""}</span>
+  </button>`;
+}
+function searchBox(){return searchOpen?`<div class="search"><input id="q" type="search" placeholder="အသင်းနာမည် ရိုက်ရှာပါ" value="${esc(query)}" autocomplete="off"></div>`:"";}
+function screenMatches(){
+  if(searchOpen&&query.trim()){
+    const q=query.trim().toLowerCase();
+    const ms=allMatches().filter(m=>(m.home+" "+m.away+" "+(m.league||"")).toLowerCase().includes(q)).sort((x,y)=>String(x.kickoff).localeCompare(String(y.kickoff)));
+    return `${searchBox()}${ms.length?`<section class="sec"><div class="sec-h">ရှာတွေ့သည် ${ms.length}</div><div class="group">${ms.map(m=>rowHtml(m,true)).join("")}</div></section>`:`<div class="empty"><b>မတွေ့ပါ</b></div>`}`;
+  }
+  const d=curDay();
+  if(!d)return `${searchBox()}${dayStrip()}<div class="empty"><b>ပွဲစဉ် မရှိသေးပါ</b>နေ့စဉ် update ဝင်လာရင် ပေါ်လာပါမယ်</div>`;
+  let ms=(d.matches||[]).map(m=>Object.assign({_d:d.date},m));
+  const lgHtml=leagueStrip(ms);
+  if(league==="fav")ms=ms.filter(m=>FAV.has(uid(m)));else if(league!=="all")ms=ms.filter(m=>m.league===league);
+  if(!ms.length)return `${searchBox()}${dayStrip()}${lgHtml}<div class="empty"><b>ပွဲမရှိပါ</b></div>`;
+  const groups={};ms.forEach(m=>(groups[m.league||"အခြား"]=groups[m.league||"အခြား"]||[]).push(m));
+  const keys=Object.keys(groups).sort((a,b)=>lgRank(a)-lgRank(b));
+  return `${searchBox()}${dayStrip()}${lgHtml}${keys.map(k=>`<section class="sec"><div class="sec-h">${esc(k)}</div><div class="group">${groups[k].sort((x,y)=>String(x.kickoff).localeCompare(String(y.kickoff))).map(m=>rowHtml(m)).join("")}</div></section>`).join("")}${FOOT}`;
+}
+function screenTop(){
+  const d=curDay();if(!d)return `${dayStrip()}<div class="empty"><b>ဒေတာ မရှိသေးပါ</b></div>`;
+  const list=[],vals=[];
+  (d.matches||[]).forEach(mm=>{const m=Object.assign({_d:d.date},mm);if(m.res&&N(m.res.hs)!=null)return;const a=A(m);
+    tips(m,a).forEach(t=>{if(t.p>=.6&&1/t.p>=1.2)list.push(Object.assign({m},t));});
+    const o=ODDS[uid(m)]||{};a.markets.forEach(mk=>{if(o[mk.key]){const e=ev(mk,o[mk.key]);if(e>0)vals.push({m,mk,o:o[mk.key],e});}});});
+  list.sort((x,y)=>y.p-x.p);vals.sort((x,y)=>y.e-x.e);
+  const valHtml=vals.length?`<section class="sec"><div class="sec-h">သင့် 1xBet odds အရ Value</div><div class="group">${vals.map(v=>`<button class="tip" data-m="${esc(uid(v.m))}"><span class="n"><small>${esc(v.m.home)} vs ${esc(v.m.away)} · ${hm(v.m.kickoff)}</small><b>${esc(v.mk.sel)} @${v.o}</b></span><span class="p"><b class="pos">+${Math.round(v.e*100)}%</b><small>EV</small></span></button>`).join("")}</div></section>`:"";
+  const body=list.length?`<div class="group">${list.slice(0,15).map(t=>`<button class="tip" data-m="${esc(uid(t.m))}"><span class="n"><small>${esc(t.m.home)} vs ${esc(t.m.away)} · ${hm(t.m.kickoff)}</small><b>${esc(t.mk)} · ${esc(t.t)}</b></span><span class="p"><b>${pct(t.p)}</b><small>@${fair(t.p)}</small></span></button>`).join("")}</div>`:`<div class="empty"><b>ဖြစ်နိုင်ခြေ ၆၀% အထက် ရွေးချယ်မှု မရှိပါ</b></div>`;
+  return `${dayStrip()}${valHtml}<section class="sec"><div class="sec-h">ဖြစ်နိုင်ခြေ အမြင့်ဆုံး</div>${body}</section>`;
+}
+function screenRecord(){
+  const keys=["result","ah","goals","corners","fouls","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",score:"ရလဒ်အတိအကျ"};
+  const tot={};keys.forEach(k=>tot[k]={h:0,n:0});
+  const done=[];
+  allMatches().forEach(m=>{const a=A(m),g=grade(m,a);if(!g)return;done.push({m,g});keys.forEach(k=>{if(g[k]!=null){tot[k].n++;if(g[k])tot[k].h++;}});});
+  if(!done.length)return `<div class="empty"><b>ရလဒ် မရှိသေးပါ</b>ပွဲပြီးတာနဲ့ ခန့်မှန်းချက် မှန်/မှား ဒီမှာ စုပြပါမယ်</div>`;
+  done.sort((x,y)=>String(y.m.kickoff).localeCompare(String(x.m.kickoff)));
+  return `<section class="sec"><div class="sec-h">မှန်ကန်မှုနှုန်း</div><div class="stats4">${keys.map(k=>`<div class="st"><small>${lab[k]}</small><b>${tot[k].n?Math.round(tot[k].h/tot[k].n*100)+"%":"—"}</b><span>${tot[k].h}/${tot[k].n}</span></div>`).join("")}</div></section>
+  <section class="sec"><div class="sec-h">ပြီးခဲ့တဲ့ ပွဲများ</div><div class="group">${done.slice(0,40).map(x=>rowHtml(x.m,true)).join("")}</div></section>`;
+}
+
+/* ---------- detail ---------- */
+function marketRow(m,a,x){
+  const id=uid(m),o=(ODDS[id]||{})[x.key],isOpen=openMk===x.key;
+  let evHtml="";
+  if(o){const e=ev(x,o);evHtml=`<span class="evb ${e>0?"pos":"neg"}">${e>0?"+":""}${Math.round(e*100)}%</span>`;}
+  return `<div class="mk${isOpen?" open":""}"><button class="mk-h" data-mk="${x.key}" aria-expanded="${isOpen}"><span class="n"><small>${esc(x.title)}</small><b>${esc(x.sel)}</b><span class="meter"><i style="width:${Math.round(x.p*100)}%"></i></span></span><span class="pp">${pct(x.p)}</span><span class="fo">${evHtml||"@"+(x.fair?x.fair.toFixed(2):"—")}</span></button>
+  ${isOpen?`<div class="mk-b"><label for="odd-${x.key}">1xBet odds</label><input id="odd-${x.key}" class="oin" data-ok="${x.key}" inputmode="decimal" placeholder="${x.fair?x.fair.toFixed(2):""}" value="${o||""}"><div class="mk-r" id="evr-${x.key}">${evText(x,o)}</div></div>`:""}</div>`;
+}
+function evText(x,o){
+  if(!o)return `Fair odds <b class="num">${x.fair?x.fair.toFixed(2):"—"}</b> — ဒီထက် မြင့်ရင် value ရှိ`;
+  const e=ev(x,o);
+  return e>0?`<b class="pos">Value +${(e*100).toFixed(1)}%</b> · fair ${x.fair.toFixed(2)} ထက် မြင့်တယ်`:`<b class="neg">Value မရှိ ${(e*100).toFixed(1)}%</b> · fair ${x.fair.toFixed(2)} ထက် နိမ့်တယ်`;
+}
+function detailHtml(){
+  const m=findMatch(detail);if(!m)return `<div class="empty"><b>ပွဲ မတွေ့ပါ</b></div>`;
+  const a=A(m),r=m.res,fin=r&&N(r.hs)!=null,g=fin?grade(m,a):null;
+  const resBadges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
+  const cd=!fin&&m.kickoff?until(m.kickoff):null;
+  const hero=`<div class="hero">
+    <div class="vs"><div class="tn">${esc(m.home)}${form(m.form&&m.form.h)}</div>
+      <div class="big">${fin?`<small>ပြီးဆုံး</small><b>${r.hs}-${r.as}</b>${a.score?`<small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:""}`:`<small>ခန့်မှန်းရလဒ်</small><b>${a.score?a.score.i+"-"+a.score.j:"—"}</b>${a.hg!=null?`<small class="num">xG ${a.hg.toFixed(1)} - ${a.ag.toFixed(1)}</small>`:""}`}</div>
+      <div class="tn">${esc(m.away)}${form(m.form&&m.form.a)}</div></div>
+    ${cd?`<div class="cd">ကန်ရန် <b class="num">${cd}</b></div>`:!fin&&m.kickoff?`<div class="cd">ပွဲ စပြီး · ရလဒ် စောင့်ဆဲ</div>`:""}
+    ${resBadges}
+    ${a.pick?`<div class="pickc"><div class="l"><small>ရွေးချယ် · ${esc(CONF[m.conf]||"")}</small><b>${esc(a.pick.label)}</b></div>${a.pick.p!=null?`<div class="p"><b>${pct(a.pick.p)}</b><small>@${fair(a.pick.p)}</small></div>`:""}</div>`:""}
+    ${a.p1?`<div><div class="bar3"><div class="h" style="flex:${a.p1.h}">${pct(a.p1.h)}</div><div class="d" style="flex:${a.p1.d}">${pct(a.p1.d)}</div><div class="a" style="flex:${a.p1.a}">${pct(a.p1.a)}</div></div><div class="bar3-l"><span>${esc(m.home)}</span><span>သရေ</span><span>${esc(m.away)}</span></div></div>`:""}
+  </div>`;
+  const seg=`<div class="seg" role="tablist">${[["pred","ခန့်မှန်း"],["lines","Lines"],["stats","Stats"]].map(([k,l])=>`<button role="tab" data-dt="${k}" aria-selected="${dtab===k}">${l}</button>`).join("")}</div>`;
+  let panel="";
+  if(dtab==="pred"){
+    panel=`${m.note?`<div class="card"><h3>သုံးသပ်ချက်</h3><div class="note">${esc(m.note)}</div></div>`:""}
+      ${a.markets.length?`<div class="card"><h3>Market ခန့်မှန်းချက် · နှိပ်ပြီး 1xBet odds ထည့်စစ်ပါ</h3>${a.markets.map(x=>marketRow(m,a,x)).join("")}</div>`:""}
+      ${a.top?`<div class="card"><h3>ဖြစ်နိုင်ခြေ အများဆုံး ရလဒ်</h3><div class="scores">${a.top.map(c=>`<div><b>${c.i}-${c.j}</b><small>${pct(c.p)}</small></div>`).join("")}</div></div>`:""}`;
+  }else if(dtab==="lines"){
+    const t=(title,rows,lab1,lab2)=>rows?`<div class="card"><h3>${title}</h3><div class="tw"><table class="lad"><tr><th>${lab1}</th><th>%</th><th>@</th><th>${lab2}</th><th>%</th><th>@</th></tr>${rows.join("")}</table></div></div>`:"";
+    const pe=(W,L)=>W/(W+L||1);
+    const ahRows=a.ah&&a.ah.lad.map(x=>`<tr class="${x.main?"main":""}"><td>${fmtL(x.H)}</td><td>${pct(pe(x.hW,x.hL))}</td><td>${fair(pe(x.hW,x.hL))}</td><td>${fmtL(-x.H)}</td><td>${pct(pe(x.aW,x.aL))}</td><td>${fair(pe(x.aW,x.aL))}</td></tr>`);
+    const glRows=a.gl&&a.gl.lad.map(x=>`<tr class="${x.main?"main":""}"><td>O ${x.T}</td><td>${pct(pe(x.oW,x.oL))}</td><td>${fair(pe(x.oW,x.oL))}</td><td>U ${x.T}</td><td>${pct(pe(x.uW,x.uL))}</td><td>${fair(pe(x.uW,x.uL))}</td></tr>`);
+    const ou=(rows,main)=>rows&&rows.map(x=>`<tr class="${(main!=null?x.L===main:x.main)?"main":""}"><td>O ${x.L}</td><td>${pct(x.po)}</td><td>${fair(x.po)}</td><td>U ${x.L}</td><td>${pct(1-x.po)}</td><td>${fair(1-x.po)}</td></tr>`);
+    panel=t(`ဘော်ဒီ · ${esc(m.home)} / ${esc(m.away)}`,ahRows,esc(m.home).slice(0,10),esc(m.away).slice(0,10))+t("ဂိုးပေါင်း (Asian)",glRows,"Over","Under")+t("ဂိုး",ou(a.goalsLad,2.5),"Over","Under")+t(`Corners · ခန့်မှန်း ${a.cm!=null?a.cm.toFixed(1):"—"}`,ou(a.cLad),"Over","Under")+t(`Fouls · ခန့်မှန်း ${a.fm!=null?a.fm.toFixed(1):"—"}`,ou(a.fLad),"Over","Under");
+  }else if(dtab==="stats"){
+    const h=(m.avg&&m.avg.h)||{},w=(m.avg&&m.avg.a)||{};
+    const cmp=(lab,x,y)=>{x=N(x);y=N(y);if(x==null&&y==null)return "";const s=(x||0)+(y||0)||1;return `<div class="rw"><span class="lab">${lab}</span><span class="v">${x??"—"}</span><span class="bars"><i class="hh" style="flex:${(x||0)/s}"></i><i class="aa" style="flex:${(y||0)/s}"></i></span><span class="v">${y??"—"}</span></div>`};
+    panel=`<div class="card"><h3>ပျမ်းမျှ / ပွဲ</h3><div class="cmp">${cmp("ဂိုးသွင်း",h.gf,w.gf)}${cmp("ဂိုးပေး",h.ga,w.ga)}${cmp("Corners",h.corners,w.corners)}${cmp("Fouls",h.fouls,w.fouls)}</div></div>
+      <div class="card"><h3>ပွဲအချက်အလက်</h3><dl class="kv">
+        ${m.ref&&m.ref.name?`<dt>ဒိုင်</dt><dd>${esc(m.ref.name)}</dd><dt>ဒိုင် fouls / ပွဲ</dt><dd>${N(m.ref.fouls)??"—"}</dd><dt>ဒိုင် ဝါကတ် / ပွဲ</dt><dd>${N(m.ref.yellows)??"—"}</dd>`:""}
+        ${m.venue?`<dt>ကွင်း</dt><dd>${esc(m.venue)}</dd>`:""}
+        ${a.pk?`<dt>Market (1 / X / 2)</dt><dd>${pct(a.pk.h)} / ${pct(a.pk.d)} / ${pct(a.pk.a)}</dd>`:""}
+        ${a.pm?`<dt>Stats model (1 / X / 2)</dt><dd>${pct(a.pm.h)} / ${pct(a.pm.d)} / ${pct(a.pm.a)}</dd>`:""}
+        ${fin&&N(r.corners)!=null?`<dt>Corners (ရလဒ်)</dt><dd>${r.corners}</dd>`:""}
+        ${fin&&N(r.fouls)!=null?`<dt>Fouls (ရလဒ်)</dt><dd>${r.fouls}</dd>`:""}
+      </dl></div>`;
+  }
+  return `${hero}${seg}<div class="panel">${panel}${m.src?`<div class="src"><a href="${esc(m.src)}" target="_blank" rel="noopener">Stats source</a></div>`:""}</div>`;
+}
+
+/* ---------- render + events ---------- */
+function render(){
+  topBar();
+  const v=$("view");
+  const keepFocus=document.activeElement&&document.activeElement.id;
+  const caret=document.activeElement&&document.activeElement.selectionStart;
+  v.innerHTML=`<div class="screen">${detail?detailHtml():tab==="top"?screenTop():tab==="record"?screenRecord():screenMatches()}</div>`;
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-current",String(!detail&&b.dataset.tab===tab)));
+  if(keepFocus==="q"||(keepFocus&&keepFocus.startsWith("odd-"))){const el=$(keepFocus);if(el){el.focus();try{el.setSelectionRange(caret,caret)}catch(e){}}}
+}
+function openDetail(id){scrollY=window.scrollY;detail=id;dtab="pred";openMk=null;render();window.scrollTo(0,0);}
+function closeDetail(){detail=null;render();window.scrollTo(0,scrollY);}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&detail)closeDetail();});
+$("view").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.day){sel=b.dataset.day;render();return;}
+  if(b.dataset.lg){league=b.dataset.lg;render();return;}
+  if(b.dataset.m){openDetail(b.dataset.m);return;}
+  if(b.dataset.dt){dtab=b.dataset.dt;render();return;}
+  if(b.dataset.mk){openMk=openMk===b.dataset.mk?null:b.dataset.mk;render();const i=$("odd-"+b.dataset.mk);if(i)i.focus();return;}
+});
+let oddsTimer=null;
+$("view").addEventListener("input",e=>{
+  const t=e.target;
+  if(t.id==="q"){query=t.value;render();return;}
+  if(t.dataset&&t.dataset.ok){
+    const k=t.dataset.ok,v=parseFloat(String(t.value).replace(",","."));const id=detail;
+    ODDS[id]=ODDS[id]||{};if(v>1)ODDS[id][k]=v;else delete ODDS[id][k];
+    const m=findMatch(id),mk=m&&A(m).markets.find(x=>x.key===k);const r=$("evr-"+k);if(r&&mk)r.innerHTML=evText(mk,ODDS[id][k]);
+    clearTimeout(oddsTimer);oddsTimer=setTimeout(()=>{saveOdds();render();},700);
+  }
+});
+document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(!b)return;tab=b.dataset.tab;detail=null;searchOpen=false;query="";render();window.scrollTo(0,0);});
+setInterval(()=>{if(detail&&!(document.activeElement&&document.activeElement.tagName==="INPUT")){const el=document.querySelector(".cd b");const m=findMatch(detail);if(el&&m){const u=until(m.kickoff);if(u)el.textContent=u;}}},30000);
+
+async function load(first){
+  try{
+    const idx=await (await fetch("data/index.json?t="+Date.now(),{cache:"no-store"})).json();
+    const dates=(idx.dates||[]).slice(-14);
+    const docs=await Promise.all(dates.map(d=>fetch("data/days/"+d+".json?v="+encodeURIComponent(idx.updatedAt||""),{cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null)));
+    DAYS=docs.filter(d=>d&&d.date).sort((x,y)=>String(x.date).localeCompare(String(y.date)));
+    if(!sel||!DAYS.some(d=>d.date===sel)){const t=keyNow();const p=DAYS.find(d=>d.date>=t)||DAYS[DAYS.length-1];sel=p?p.date:null;}
+    const ae=document.activeElement;if(!first&&ae&&ae.tagName==="INPUT")return;
+    render();
+  }catch(e){if(first){$("view").innerHTML=`<div class="empty"><b>ဒေတာ ဖွင့်မရပါ</b>ခဏနေ ပြန်ဖွင့်ကြည့်ပါ</div>`;topBar();}}
+}
+load(true);setInterval(()=>{if(!document.hidden)load(false)},300000);
+})();
+</script>
+
+</body>
+</html>
