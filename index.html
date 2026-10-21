@@ -80,11 +80,11 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 .empty b{display:block;color:var(--ink);font-family:var(--f-display);font-size:20px}
 
 /* detail */
-.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;display:flex;flex-direction:column;gap:12px}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px 16px;margin-top:12px;display:flex;flex-direction:column;gap:14px}
 .vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;text-align:center}
 .tn{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1.1;overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:center;gap:6px}
 .big{display:flex;flex-direction:column;align-items:center;gap:2px}
-.big b{font-family:var(--f-mono);font-size:34px;font-weight:600;line-height:1}
+.big b{font-family:var(--f-mono);font-size:38px;font-weight:600;line-height:1}
 .big small{font-size:11px;color:var(--muted)}
 .form{display:inline-flex;gap:3px}
 .form i{font-style:normal;width:17px;height:17px;border-radius:4px;font-size:10px;display:inline-grid;place-items:center;font-family:var(--f-mono);font-weight:600}
@@ -111,16 +111,16 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 .panel{display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
 .card h3{margin:0 0 8px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
-.note{line-height:1.8;font-size:14px}
+.note{line-height:1.8;font-size:14px;color:var(--ink)}
+.card.note{background:var(--amber-soft);border-color:transparent}
 .mk{border-top:1px solid var(--line)}
 .card h3+.mk{border-top:0}
 .mk-h{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;text-align:left}
 .mk.open .mk-h{padding-bottom:6px}
-.mk-b{display:grid;grid-template-columns:auto 110px minmax(0,1fr);gap:6px 10px;align-items:center;padding:0 0 12px;font-size:12.5px}
+.mk-b{display:flex;gap:12px;align-items:center;padding:0 0 12px;font-size:13px}
 .mk-b label{color:var(--muted)}
-.oin{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:7px 9px;font-family:var(--f-mono);font-size:15px;width:100%}
-.mk-r{grid-column:1/-1;color:var(--muted)}
-@media (min-width:520px){.mk-r{grid-column:auto}}
+.oin{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:7px 9px;font-family:var(--f-mono);font-size:15px;width:120px}
+.mk-r{color:var(--muted)}
 .pos{color:var(--accent)}.neg{color:var(--miss)}
 .evb{font-family:var(--f-mono);font-size:12px;font-weight:600;border-radius:6px;padding:1px 6px}
 .evb.pos{background:var(--accent-soft)}.evb.neg{background:var(--miss-soft)}
@@ -131,11 +131,11 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 .mk .fo{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:46px;text-align:right}
 .meter{height:4px;background:var(--soft);border-radius:2px;margin-top:4px;overflow:hidden}
 .meter i{display:block;height:100%;background:var(--accent)}
-.scores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.scores div{background:var(--soft);border-radius:10px;padding:8px;text-align:center}
+.scores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.scores div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}
 .scores b{display:block;font-family:var(--f-mono);font-size:17px}
 .scores small{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
-.scores div:first-child{background:var(--accent-soft);color:var(--accent)}
+
 
 .cmp{display:flex;flex-direction:column;gap:12px}
 .cmp .rw{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px;align-items:center}
@@ -149,7 +149,7 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 .kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-family:var(--f-mono)}
 
 .lad{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
-.lad th{font-weight:500;color:var(--muted);font-size:11px;text-align:right;padding:4px 0}
+.lad th{font-weight:500;color:var(--muted);font-size:11.5px;text-align:right;padding:4px 0;font-family:var(--f-body)}
 .lad th:first-child,.lad td:first-child{text-align:left}
 .lad td{text-align:right;padding:6px 0;border-top:1px solid var(--line)}
 .lad tr.main td{color:var(--accent);font-weight:600}
@@ -244,12 +244,21 @@ const MODEL=(function(){
   }
   const outc=c=>c.i>c.j?"h":c.i<c.j?"a":"d";
   function analyze(m){
-    const e=m.exp||{},hg=N(e.hg),ag=N(e.ag);
+    const e=m.exp||{};let hg=N(e.hg),ag=N(e.ag);
     const pm=norm3(m.p),pk=mkt(m.odds);
-    let M=(hg!=null&&ag!=null)?matrix(hg,ag):null;
     let p1=null;
     if(pm&&pk)p1={h:.6*pk.h+.4*pm.h,d:.6*pk.d+.4*pm.d,a:.6*pk.a+.4*pm.a};
     else p1=pk||pm;
+    // Fit team goal rates to the blended 1X2: total from stats (shrunk to a 2.75 league norm), supremacy solved so
+    // P(home) - P(away) matches. Keeps xG, scoreline and result consistent even when source xG is off.
+    if(p1){
+      const raw=N(e.goals)!=null?N(e.goals):(hg!=null&&ag!=null?hg+ag:2.75);
+      const T=Math.min(4.2,Math.max(1.6,.65*raw+.35*2.75)),target=p1.h-p1.a;
+      const diff=s=>{const a1=Math.max(.12,(T+s)/2),a2=Math.max(.12,(T-s)/2);const X=matrix(a1,a2);let h=0,a=0;X.forEach(c=>{if(c.i>c.j)h+=c.p;else if(c.i<c.j)a+=c.p});return h-a;};
+      let lo=-T+.25,hi=T-.25;for(let k=0;k<40;k++){const mid=(lo+hi)/2;if(diff(mid)<target)lo=mid;else hi=mid;}
+      const sp=(lo+hi)/2;hg=Math.max(.12,(T+sp)/2);ag=Math.max(.12,(T-sp)/2);
+    }
+    let M=(hg!=null&&ag!=null)?matrix(hg,ag):null;
     if(M){
       const S={h:0,d:0,a:0};M.forEach(c=>S[outc(c)]+=c.p);
       if(p1){M.forEach(c=>{const o=outc(c);c.p=S[o]>0?c.p*p1[o]/S[o]:0});}else p1=S;
@@ -265,11 +274,16 @@ const MODEL=(function(){
     }
     let score=null,top=null,o25=null,btts=null,goalsLad=null;
     if(M){
-      const want=pick&&pick.side!=="x"?pick.side:null;
-      score=(want?M.find(c=>outc(c)===want):null)||M[0];
       top=M.slice(0,6);
       const over=L=>M.reduce((s,c)=>s+(c.i+c.j>L?c.p:0),0);
       o25=over(2.5);btts=M.reduce((s,c)=>s+(c.i>0&&c.j>0?c.p:0),0);
+      // Predicted scoreline = the likeliest exact score that agrees with every headline pick shown
+      // (result / double chance, goals O/U 2.5, BTTS). Falls back step by step if no cell fits.
+      const side=pick?pick.side:"x",dc=pick&&pick.dc;
+      const okR=c=>side==="x"?true:dc?(outc(c)===side||outc(c)==="d"):outc(c)===side;
+      const okG=c=>o25>=.5?c.i+c.j>=3:c.i+c.j<=2;
+      const okB=c=>btts>=.5?(c.i>0&&c.j>0):(c.i===0||c.j===0);
+      score=side==="x"?M[0]:(M.find(c=>okR(c)&&okG(c)&&okB(c))||M.find(c=>okR(c)&&okG(c))||M.find(okR)||M[0]);
       goalsLad=[0.5,1.5,2.5,3.5,4.5].map(L=>({L,po:over(L)}));
     }
     const cm=N(e.corners),fm=N(e.fouls);
@@ -359,7 +373,7 @@ const curDay=()=>DAYS.find(d=>d.date===sel);
 const allMatches=()=>DAYS.flatMap(d=>(d.matches||[]).map(m=>Object.assign({_d:d.date},m)));
 const uid=m=>m.id+"|"+m._d;
 const findMatch=id=>allMatches().find(m=>uid(m)===id);
-const FOOT=`<p class="foot">ခန့်မှန်းချက်များသာ ဖြစ်ပြီး အာမခံချက် မဟုတ်ပါ · 18+ · ဆုံးရှုံးခံနိုင်သလောက်သာ</p>`;
+const FOOT=`<p class="foot">ခန့်မှန်းချက်သာ · 18+</p>`;
 const icon={
   back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
@@ -446,57 +460,54 @@ function screenRecord(){
 /* ---------- detail ---------- */
 function marketRow(m,a,x){
   const id=uid(m),o=(ODDS[id]||{})[x.key],isOpen=openMk===x.key;
-  let evHtml="";
-  if(o){const e=ev(x,o);evHtml=`<span class="evb ${e>0?"pos":"neg"}">${e>0?"+":""}${Math.round(e*100)}%</span>`;}
-  return `<div class="mk${isOpen?" open":""}"><button class="mk-h" data-mk="${x.key}" aria-expanded="${isOpen}"><span class="n"><small>${esc(x.title)}</small><b>${esc(x.sel)}</b><span class="meter"><i style="width:${Math.round(x.p*100)}%"></i></span></span><span class="pp">${pct(x.p)}</span><span class="fo">${evHtml||"@"+(x.fair?x.fair.toFixed(2):"—")}</span></button>
-  ${isOpen?`<div class="mk-b"><label for="odd-${x.key}">1xBet odds</label><input id="odd-${x.key}" class="oin" data-ok="${x.key}" inputmode="decimal" placeholder="${x.fair?x.fair.toFixed(2):""}" value="${o||""}"><div class="mk-r" id="evr-${x.key}">${evText(x,o)}</div></div>`:""}</div>`;
+  const e=o?ev(x,o):null;
+  return `<div class="mk${isOpen?" open":""}"><button class="mk-h" data-mk="${x.key}" aria-expanded="${isOpen}"><span class="n"><small>${esc(x.title)}</small><b>${esc(x.sel)}</b></span><span class="pp">${pct(x.p)}</span><span class="fo">${e!=null?`<span class="evb ${e>0?"pos":"neg"}">${e>0?"+":""}${Math.round(e*100)}%</span>`:"@"+(x.fair?x.fair.toFixed(2):"—")}</span></button>
+  ${isOpen?`<div class="mk-b"><input id="odd-${x.key}" class="oin" data-ok="${x.key}" inputmode="decimal" placeholder="1xBet odds" value="${o||""}" aria-label="1xBet odds"><span class="mk-r" id="evr-${x.key}">${evText(x,o)}</span></div>`:""}</div>`;
 }
 function evText(x,o){
-  if(!o)return `Fair odds <b class="num">${x.fair?x.fair.toFixed(2):"—"}</b> — ဒီထက် မြင့်ရင် value ရှိ`;
-  const e=ev(x,o);
-  return e>0?`<b class="pos">Value +${(e*100).toFixed(1)}%</b> · fair ${x.fair.toFixed(2)} ထက် မြင့်တယ်`:`<b class="neg">Value မရှိ ${(e*100).toFixed(1)}%</b> · fair ${x.fair.toFixed(2)} ထက် နိမ့်တယ်`;
+  if(!o)return `fair <b class="num">${x.fair?x.fair.toFixed(2):"—"}</b>`;
+  const e=ev(x,o);return `<b class="${e>0?"pos":"neg"}">${e>0?"Value +":"Value မရှိ "}${(e*100).toFixed(1)}%</b>`;
 }
 function detailHtml(){
   const m=findMatch(detail);if(!m)return `<div class="empty"><b>ပွဲ မတွေ့ပါ</b></div>`;
   const a=A(m),r=m.res,fin=r&&N(r.hs)!=null,g=fin?grade(m,a):null;
-  const resBadges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
   const cd=!fin&&m.kickoff?until(m.kickoff):null;
+  const badges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
   const hero=`<div class="hero">
     <div class="vs"><div class="tn">${esc(m.home)}${form(m.form&&m.form.h)}</div>
-      <div class="big">${fin?`<small>ပြီးဆုံး</small><b>${r.hs}-${r.as}</b>${a.score?`<small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:""}`:`<small>ခန့်မှန်းရလဒ်</small><b>${a.score?a.score.i+"-"+a.score.j:"—"}</b>${a.hg!=null?`<small class="num">xG ${a.hg.toFixed(1)} - ${a.ag.toFixed(1)}</small>`:""}`}</div>
+      <div class="big">${fin?`<b>${r.hs}-${r.as}</b><small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:`<b>${a.score?a.score.i+"-"+a.score.j:"—"}</b><small>${cd?"ကန်ရန် "+cd:"စပြီး"}</small>`}</div>
       <div class="tn">${esc(m.away)}${form(m.form&&m.form.a)}</div></div>
-    ${cd?`<div class="cd">ကန်ရန် <b class="num">${cd}</b></div>`:!fin&&m.kickoff?`<div class="cd">ပွဲ စပြီး · ရလဒ် စောင့်ဆဲ</div>`:""}
-    ${resBadges}
-    ${a.pick?`<div class="pickc"><div class="l"><small>ရွေးချယ် · ${esc(CONF[m.conf]||"")}</small><b>${esc(a.pick.label)}</b></div>${a.pick.p!=null?`<div class="p"><b>${pct(a.pick.p)}</b><small>@${fair(a.pick.p)}</small></div>`:""}</div>`:""}
-    ${a.p1?`<div><div class="bar3"><div class="h" style="flex:${a.p1.h}">${pct(a.p1.h)}</div><div class="d" style="flex:${a.p1.d}">${pct(a.p1.d)}</div><div class="a" style="flex:${a.p1.a}">${pct(a.p1.a)}</div></div><div class="bar3-l"><span>${esc(m.home)}</span><span>သရေ</span><span>${esc(m.away)}</span></div></div>`:""}
+    ${badges}
+    ${a.p1?`<div class="bar3" aria-label="1 X 2"><div class="h" style="flex:${a.p1.h}">${pct(a.p1.h)}</div><div class="d" style="flex:${a.p1.d}">${pct(a.p1.d)}</div><div class="a" style="flex:${a.p1.a}">${pct(a.p1.a)}</div></div>`:""}
+    ${a.pick?`<div class="pickc"><div class="l"><small>${esc(CONF[m.conf]||"ရွေးချယ်")}</small><b>${esc(a.pick.label)}</b></div>${a.pick.p!=null?`<div class="p"><b>${pct(a.pick.p)}</b><small>@${fair(a.pick.p)}</small></div>`:""}</div>`:""}
   </div>`;
-  const seg=`<div class="seg" role="tablist">${[["pred","ခန့်မှန်း"],["lines","Lines"],["stats","Stats"]].map(([k,l])=>`<button role="tab" data-dt="${k}" aria-selected="${dtab===k}">${l}</button>`).join("")}</div>`;
+  const tabsList=[["pred","ခန့်မှန်း"],["lines","Lines"],["stats","Stats"]];
+  const seg=`<div class="seg" role="tablist">${tabsList.map(([k,l])=>`<button role="tab" data-dt="${k}" aria-selected="${dtab===k}">${l}</button>`).join("")}</div>`;
   let panel="";
   if(dtab==="pred"){
-    panel=`${m.note?`<div class="card"><h3>သုံးသပ်ချက်</h3><div class="note">${esc(m.note)}</div></div>`:""}
-      ${a.markets.length?`<div class="card"><h3>Market ခန့်မှန်းချက် · နှိပ်ပြီး 1xBet odds ထည့်စစ်ပါ</h3>${a.markets.map(x=>marketRow(m,a,x)).join("")}</div>`:""}
-      ${a.top?`<div class="card"><h3>ဖြစ်နိုင်ခြေ အများဆုံး ရလဒ်</h3><div class="scores">${a.top.map(c=>`<div><b>${c.i}-${c.j}</b><small>${pct(c.p)}</small></div>`).join("")}</div></div>`:""}`;
+    panel=`${m.note?`<div class="card note">${esc(m.note)}</div>`:""}
+      <div class="card">${a.markets.map(x=>marketRow(m,a,x)).join("")}</div>
+      ${a.top?`<div class="scores">${a.top.slice(0,3).map(c=>`<div><b>${c.i}-${c.j}</b><small>${pct(c.p)}</small></div>`).join("")}</div>`:""}`;
   }else if(dtab==="lines"){
-    const t=(title,rows,lab1,lab2)=>rows?`<div class="card"><h3>${title}</h3><div class="tw"><table class="lad"><tr><th>${lab1}</th><th>%</th><th>@</th><th>${lab2}</th><th>%</th><th>@</th></tr>${rows.join("")}</table></div></div>`:"";
     const pe=(W,L)=>W/(W+L||1);
-    const ahRows=a.ah&&a.ah.lad.map(x=>`<tr class="${x.main?"main":""}"><td>${fmtL(x.H)}</td><td>${pct(pe(x.hW,x.hL))}</td><td>${fair(pe(x.hW,x.hL))}</td><td>${fmtL(-x.H)}</td><td>${pct(pe(x.aW,x.aL))}</td><td>${fair(pe(x.aW,x.aL))}</td></tr>`);
-    const glRows=a.gl&&a.gl.lad.map(x=>`<tr class="${x.main?"main":""}"><td>O ${x.T}</td><td>${pct(pe(x.oW,x.oL))}</td><td>${fair(pe(x.oW,x.oL))}</td><td>U ${x.T}</td><td>${pct(pe(x.uW,x.uL))}</td><td>${fair(pe(x.uW,x.uL))}</td></tr>`);
-    const ou=(rows,main)=>rows&&rows.map(x=>`<tr class="${(main!=null?x.L===main:x.main)?"main":""}"><td>O ${x.L}</td><td>${pct(x.po)}</td><td>${fair(x.po)}</td><td>U ${x.L}</td><td>${pct(1-x.po)}</td><td>${fair(1-x.po)}</td></tr>`);
-    panel=t(`ဘော်ဒီ · ${esc(m.home)} / ${esc(m.away)}`,ahRows,esc(m.home).slice(0,10),esc(m.away).slice(0,10))+t("ဂိုးပေါင်း (Asian)",glRows,"Over","Under")+t("ဂိုး",ou(a.goalsLad,2.5),"Over","Under")+t(`Corners · ခန့်မှန်း ${a.cm!=null?a.cm.toFixed(1):"—"}`,ou(a.cLad),"Over","Under")+t(`Fouls · ခန့်မှန်း ${a.fm!=null?a.fm.toFixed(1):"—"}`,ou(a.fLad),"Over","Under");
+    const t=(title,h1,h2,rows)=>rows&&rows.length?`<div class="card"><h3>${title}</h3><table class="lad"><tr><th></th><th>${h1}</th><th>${h2}</th></tr>${rows.map(x=>`<tr class="${x.main?"main":""}"><td>${x.l}</td><td>${fair(x.p1)}</td><td>${fair(x.p2)}</td></tr>`).join("")}</table></div>`:"";
+    const short=n=>esc(String(n).length>11?String(n).slice(0,10)+"…":n);
+    panel=t("ဘော်ဒီ",short(m.home),short(m.away),a.ah&&a.ah.lad.map(x=>({l:fmtL(x.H),p1:pe(x.hW,x.hL),p2:pe(x.aW,x.aL),main:x.main})))
+      +t("ဂိုးပေါင်း","Over","Under",a.gl&&a.gl.lad.map(x=>({l:x.T,p1:pe(x.oW,x.oL),p2:pe(x.uW,x.uL),main:x.main})))
+      +t(`Corners · ${a.cm!=null?a.cm.toFixed(1):"—"}`,"Over","Under",a.cLad&&a.cLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})))
+      +t(`Fouls · ${a.fm!=null?a.fm.toFixed(1):"—"}`,"Over","Under",a.fLad&&a.fLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})));
   }else if(dtab==="stats"){
     const h=(m.avg&&m.avg.h)||{},w=(m.avg&&m.avg.a)||{};
     const cmp=(lab,x,y)=>{x=N(x);y=N(y);if(x==null&&y==null)return "";const s=(x||0)+(y||0)||1;return `<div class="rw"><span class="lab">${lab}</span><span class="v">${x??"—"}</span><span class="bars"><i class="hh" style="flex:${(x||0)/s}"></i><i class="aa" style="flex:${(y||0)/s}"></i></span><span class="v">${y??"—"}</span></div>`};
-    panel=`<div class="card"><h3>ပျမ်းမျှ / ပွဲ</h3><div class="cmp">${cmp("ဂိုးသွင်း",h.gf,w.gf)}${cmp("ဂိုးပေး",h.ga,w.ga)}${cmp("Corners",h.corners,w.corners)}${cmp("Fouls",h.fouls,w.fouls)}</div></div>
-      <div class="card"><h3>ပွဲအချက်အလက်</h3><dl class="kv">
-        ${m.ref&&m.ref.name?`<dt>ဒိုင်</dt><dd>${esc(m.ref.name)}</dd><dt>ဒိုင် fouls / ပွဲ</dt><dd>${N(m.ref.fouls)??"—"}</dd><dt>ဒိုင် ဝါကတ် / ပွဲ</dt><dd>${N(m.ref.yellows)??"—"}</dd>`:""}
+    panel=`<div class="card"><div class="cmp">${cmp("xG",a.hg!=null?+a.hg.toFixed(2):null,a.ag!=null?+a.ag.toFixed(2):null)}${cmp("ဂိုးသွင်း",h.gf,w.gf)}${cmp("ဂိုးပေး",h.ga,w.ga)}${cmp("Corners",h.corners,w.corners)}${cmp("Fouls",h.fouls,w.fouls)}</div></div>
+      ${(m.ref&&m.ref.name)||m.venue||fin?`<div class="card"><dl class="kv">
+        ${m.ref&&m.ref.name?`<dt>ဒိုင်</dt><dd>${esc(m.ref.name)}</dd><dt>Fouls · ကတ် / ပွဲ</dt><dd>${N(m.ref.fouls)??"—"} · ${N(m.ref.yellows)??"—"}</dd>`:""}
         ${m.venue?`<dt>ကွင်း</dt><dd>${esc(m.venue)}</dd>`:""}
-        ${a.pk?`<dt>Market (1 / X / 2)</dt><dd>${pct(a.pk.h)} / ${pct(a.pk.d)} / ${pct(a.pk.a)}</dd>`:""}
-        ${a.pm?`<dt>Stats model (1 / X / 2)</dt><dd>${pct(a.pm.h)} / ${pct(a.pm.d)} / ${pct(a.pm.a)}</dd>`:""}
-        ${fin&&N(r.corners)!=null?`<dt>Corners (ရလဒ်)</dt><dd>${r.corners}</dd>`:""}
-        ${fin&&N(r.fouls)!=null?`<dt>Fouls (ရလဒ်)</dt><dd>${r.fouls}</dd>`:""}
-      </dl></div>`;
+        ${fin&&N(r.corners)!=null?`<dt>Corners</dt><dd>${r.corners}</dd>`:""}
+        ${fin&&N(r.fouls)!=null?`<dt>Fouls</dt><dd>${r.fouls}</dd>`:""}
+      </dl></div>`:""}`;
   }
-  return `${hero}${seg}<div class="panel">${panel}${m.src?`<div class="src"><a href="${esc(m.src)}" target="_blank" rel="noopener">Stats source</a></div>`:""}</div>`;
+  return `${hero}${seg}<div class="panel">${panel}</div>`;
 }
 
 /* ---------- render + events ---------- */
