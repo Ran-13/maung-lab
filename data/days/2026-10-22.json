@@ -1,0 +1,1507 @@
+{
+  "date": "2026-10-22",
+  "matches": [
+    {
+      "avg": {
+        "a": {
+          "corners": 8,
+          "fouls": 11.8,
+          "ga": 1.1,
+          "gf": 2.2
+        },
+        "h": {
+          "corners": 3,
+          "fouls": 10.8,
+          "ga": 2,
+          "gf": 1
+        }
+      },
+      "away": "AZ",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 1.9,
+        "corners": 10.6,
+        "fouls": 22.3,
+        "goals": 3.1,
+        "hg": 1.2
+      },
+      "form": {
+        "a": "LWLWD",
+        "h": "LDWLL"
+      },
+      "home": "Ararat Armenia",
+      "id": "ararat-armenia-az",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "AZ ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 2 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.2 သွင်း၊ 1.1 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်၊ ဈေးကွက် (odds 1.62) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.1 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~10.6 (ပုံမှန်)၊ fouls ~22.3 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 1.62,
+        "d": 4.4,
+        "h": 6,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.45,
+        "d": 0.27,
+        "h": 0.28
+      },
+      "ref": {
+        "fouls": null,
+        "name": "Patrik Kolarić",
+        "yellows": null
+      },
+      "src": "https://statz.ai/h2h/ararat-vs-az/19873823",
+      "venue": "Vazgen Sargsyan Republican Stadium, Yerevan"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 5.8,
+          "fouls": 11.3,
+          "ga": 1.8,
+          "gf": 1.7
+        },
+        "h": {
+          "corners": 6.7,
+          "fouls": 14.3,
+          "ga": 1.3,
+          "gf": 2.6
+        }
+      },
+      "away": "NEC",
+      "btts": null,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.4,
+        "corners": 11.5,
+        "fouls": 23.3,
+        "goals": 3.8,
+        "hg": 2.4
+      },
+      "form": {
+        "a": "LDDDD",
+        "h": "DWLWW"
+      },
+      "home": "Dinamo Zagreb",
+      "id": "dinamo-zagreb-nec",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Dinamo Zagreb ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.6 သွင်း၊ 1.3 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.8) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.8 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~11.5 (များနိုင်တယ်)၊ fouls ~23.3 မျှော်မှန်းထားပြီး ဒိုင် Manfredas Lukjančukas (20 fouls/ပွဲ၊ ကတ်ဝါ 1/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 4.33,
+        "d": 4,
+        "h": 1.8,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.21,
+        "d": 0.31,
+        "h": 0.48
+      },
+      "ref": {
+        "fouls": 20,
+        "name": "Manfredas Lukjančukas",
+        "yellows": 1
+      },
+      "src": "https://statz.ai/h2h/dinamo-zagreb-vs-nec-nijmegen/19873807",
+      "venue": "Stadion Maksimir, Zagreb"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 2,
+          "fouls": 13.5,
+          "ga": 1.5,
+          "gf": 1.5
+        },
+        "h": {
+          "corners": 5.2,
+          "fouls": 12.7,
+          "ga": 0.7,
+          "gf": 2.1
+        }
+      },
+      "away": "Torreense",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 1,
+        "corners": 8.32,
+        "fouls": 25.55,
+        "goals": 3,
+        "hg": 2
+      },
+      "form": {
+        "a": "WL",
+        "h": "DWWWW"
+      },
+      "home": "Ferencváros",
+      "id": "ferencvaros-torreense",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Ferencváros ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 4 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.1 သွင်း၊ 0.7 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.4) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~8.3 (နည်းနိုင်တယ်)၊ fouls ~25.6 မျှော်မှန်းထားပြီး ဒိုင် Jérôme Brisard (27.8 fouls/ပွဲ၊ ကတ်ဝါ 4.3/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 8,
+        "d": 5,
+        "h": 1.4,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.12,
+        "d": 0.19,
+        "h": 0.69
+      },
+      "ref": {
+        "fouls": 27.8,
+        "name": "Jérôme Brisard",
+        "yellows": 4.3
+      },
+      "src": "https://statz.ai/h2h/ferencvrosi-vs-torreense/19873826",
+      "venue": "Groupama Aréna, Budapest"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 5.9,
+          "fouls": 13.4,
+          "ga": 2,
+          "gf": 2.1
+        },
+        "h": {
+          "corners": 8.1,
+          "fouls": 12.6,
+          "ga": 1.1,
+          "gf": 1.3
+        }
+      },
+      "away": "Rennes",
+      "btts": 0.57,
+      "conf": "medium",
+      "exp": {
+        "ag": 1,
+        "corners": 12.4,
+        "fouls": 24.88,
+        "goals": 3.2,
+        "hg": 2.2
+      },
+      "form": {
+        "a": "DLWWL",
+        "h": "WWDWL"
+      },
+      "home": "Juventus",
+      "id": "juventus-rennes",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Juventus ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.3 သွင်း၊ 1.1 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.62) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~12.4 (များနိုင်တယ်)၊ fouls ~24.9 မျှော်မှန်းထားပြီး ဒိုင် Morten Krogh (25.5 fouls/ပွဲ၊ ကတ်ဝါ 3.5/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။",
+      "odds": {
+        "a": 6,
+        "d": 4.4,
+        "h": 1.62,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.16,
+        "d": 0.2,
+        "h": 0.64
+      },
+      "ref": {
+        "fouls": 25.5,
+        "name": "Morten Krogh",
+        "yellows": 3.5
+      },
+      "src": "https://statz.ai/h2h/juventus-vs-rennes/19873819",
+      "venue": "Allianz Stadium, Turin"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.3,
+          "fouls": 11.4,
+          "ga": 2,
+          "gf": 0.9
+        },
+        "h": {
+          "corners": 6.7,
+          "fouls": 11.6,
+          "ga": 0.9,
+          "gf": 3
+        }
+      },
+      "away": "Sunderland",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 0.8,
+        "corners": 10.6,
+        "fouls": 21,
+        "goals": 3.6,
+        "hg": 2.8
+      },
+      "form": {
+        "a": "WLLWL",
+        "h": "LWWLW"
+      },
+      "home": "Lech Poznań",
+      "id": "lech-poznan-sunderland",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Sunderland ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 2 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 0.9 သွင်း၊ 2 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်။ ဂိုး 3.6 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~10.6 (ပုံမှန်)၊ fouls ~21 မျှော်မှန်းထားပြီး ဒိုင် Balazs Berke (16 fouls/ပွဲ၊ ကတ်ဝါ 1/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.57,
+        "d": 0.23,
+        "h": 0.2
+      },
+      "ref": {
+        "fouls": 16,
+        "name": "Balazs Berke",
+        "yellows": 1
+      },
+      "src": "https://statz.ai/h2h/lech-pozna-vs-sunderland/19873813",
+      "venue": "Enea Stadion, Poznań"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7.3,
+          "fouls": 12.2,
+          "ga": 1.5,
+          "gf": 2.7
+        },
+        "h": {
+          "corners": 3.3,
+          "fouls": 9.5,
+          "ga": 0.5,
+          "gf": 2
+        }
+      },
+      "away": "Leverkusen",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 1.4,
+        "corners": 10.36,
+        "fouls": 21.85,
+        "goals": 3.3,
+        "hg": 1.9
+      },
+      "form": {
+        "a": "WWWWW",
+        "h": "WWWL"
+      },
+      "home": "OFI",
+      "id": "ofi-leverkusen",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Leverkusen ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 5 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.7 သွင်း၊ 1.5 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်။ ဂိုး 3.3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~10.4 (ပုံမှန်)၊ fouls ~21.9 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.78,
+        "d": 0.14,
+        "h": 0.08
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/ofi-vs-leverkusen/19873829",
+      "venue": "Pankritio Stadium, Heraklion"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.4,
+          "fouls": 10.7,
+          "ga": 1.4,
+          "gf": 2
+        },
+        "h": {
+          "corners": 7.6,
+          "fouls": 11.6,
+          "ga": 1.1,
+          "gf": 1.8
+        }
+      },
+      "away": "Marseille",
+      "btts": 0.6,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.8,
+        "corners": 11.2,
+        "fouls": 20.4,
+        "goals": 3.1,
+        "hg": 1.3
+      },
+      "form": {
+        "a": "LLWLW",
+        "h": "DLWLW"
+      },
+      "home": "Sturm Graz",
+      "id": "sturm-graz-marseille",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Marseille ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 2 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2 သွင်း၊ 1.4 ပေးထားတယ်၊ ဈေးကွက် (odds 2.1) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3.1 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 60%) မြင့်တယ်။ ကော်နာ ~11.2 (ပုံမှန်)၊ fouls ~20.4 မျှော်မှန်းထားပြီး ဒိုင် Nenad Minaković (15 fouls/ပွဲ၊ ကတ်ဝါ 2/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 2.1,
+        "d": 3.8,
+        "h": 3.6,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.5,
+        "d": 0.24,
+        "h": 0.26
+      },
+      "ref": {
+        "fouls": 15,
+        "name": "Nenad Minaković",
+        "yellows": 2
+      },
+      "src": "https://statz.ai/h2h/sturm-graz-vs-marseille/19873816",
+      "venue": "Merkur Arena, Graz"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 3.5,
+          "fouls": 13.5,
+          "ga": 1,
+          "gf": 1
+        },
+        "h": {
+          "corners": 6,
+          "fouls": 10.8,
+          "ga": 0.5,
+          "gf": 3.1
+        }
+      },
+      "away": "Hapoel Be'er Sheva",
+      "btts": 0.53,
+      "conf": "high",
+      "exp": {
+        "ag": 0.8,
+        "corners": 9.7,
+        "fouls": 22.9,
+        "goals": 3.4,
+        "hg": 2.6
+      },
+      "form": {
+        "a": "WWLDL",
+        "h": "WWWDD"
+      },
+      "home": "Union SG",
+      "id": "union-sg-hapoel-be-er-sheva",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Europa League",
+      "note": "Union SG ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 3.1 သွင်း၊ 0.5 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်။ ဂိုး 3.4 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~9.7 (ပုံမှန်)၊ fouls ~22.9 မျှော်မှန်းထားပြီး ဒိုင် Nikolai Balakin (21 fouls/ပွဲ၊ ကတ်ဝါ 3/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "p": {
+        "a": 0.1,
+        "d": 0.15,
+        "h": 0.75
+      },
+      "ref": {
+        "fouls": 21,
+        "name": "Nikolai Balakin",
+        "yellows": 3
+      },
+      "src": "https://statz.ai/h2h/union-sg-vs-beer-sheva/19873810",
+      "venue": "Merkur Spiel-Arena, Düsseldorf"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 3,
+          "fouls": 9,
+          "ga": 1,
+          "gf": 2
+        },
+        "h": {
+          "corners": 4.7,
+          "fouls": 12.9,
+          "ga": 1.9,
+          "gf": 1.3
+        }
+      },
+      "away": "AC Milan",
+      "btts": 0.59,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.3,
+        "corners": 8.62,
+        "fouls": 21.7,
+        "goals": 3,
+        "hg": 1.7
+      },
+      "form": {
+        "a": "LWDWW",
+        "h": "WLLWW"
+      },
+      "home": "Bournemouth",
+      "id": "bournemouth-ac-milan",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Bournemouth ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.3 သွင်း၊ 1.9 ပေးထားတယ်၊ ဈေးကွက် (odds 2.1) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 59%) မြင့်တယ်။ ကော်နာ ~8.6 (နည်းနိုင်တယ်)၊ fouls ~21.7 မျှော်မှန်းထားပြီး ဒိုင် Vasilis Fotias (21 fouls/ပွဲ၊ ကတ်ဝါ 6/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 3.6,
+        "d": 3.8,
+        "h": 2.1,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.29,
+        "d": 0.25,
+        "h": 0.46
+      },
+      "ref": {
+        "fouls": 21,
+        "name": "Vasilis Fotias",
+        "yellows": 6
+      },
+      "src": "https://statz.ai/h2h/bmouth-vs-ac-milan/19873944",
+      "venue": "Vitality Stadium"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 3.1,
+          "fouls": 10,
+          "ga": 2.4,
+          "gf": 1.5
+        },
+        "h": {
+          "corners": 7.5,
+          "fouls": 13.8,
+          "ga": 1.3,
+          "gf": 2
+        }
+      },
+      "away": "Crystal Palace",
+      "btts": 0.64,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.6,
+        "corners": 10.36,
+        "fouls": 23.4,
+        "goals": 3.2,
+        "hg": 1.6
+      },
+      "form": {
+        "a": "WDWLL",
+        "h": "WLWWL"
+      },
+      "home": "Beşiktaş",
+      "id": "besiktas-crystal-palace",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Beşiktaş ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2 သွင်း၊ 1.3 ပေးထားတယ်၊ ဈေးကွက် (odds 2.1) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 64%) မြင့်တယ်။ ကော်နာ ~10.4 (ပုံမှန်)၊ fouls ~23.4 မျှော်မှန်းထားပြီး ဒိုင် Danny Makkelie (24 fouls/ပွဲ၊ ကတ်ဝါ 2.8/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။",
+      "odds": {
+        "a": 3.2,
+        "d": 4,
+        "h": 2.1,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.38,
+        "d": 0.24,
+        "h": 0.38
+      },
+      "ref": {
+        "fouls": 24,
+        "name": "Danny Makkelie",
+        "yellows": 2.8
+      },
+      "src": "https://statz.ai/h2h/beikta-vs-palace/19873946",
+      "venue": "Beşiktaş Stadium, Istanbul"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7.2,
+          "fouls": 6.9,
+          "ga": 0.4,
+          "gf": 2.6
+        },
+        "h": {
+          "corners": 2.5,
+          "fouls": 9.5,
+          "ga": 2.5,
+          "gf": null
+        }
+      },
+      "away": "Salzburg",
+      "btts": 0.58,
+      "conf": "low",
+      "exp": {
+        "ag": 2.1,
+        "corners": 9.82,
+        "fouls": 19.2,
+        "goals": 3.2,
+        "hg": 1.1
+      },
+      "form": {
+        "a": "WWDLW",
+        "h": "WDLLL"
+      },
+      "home": "Celje",
+      "id": "celje-salzburg",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Salzburg ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.6 သွင်း၊ 0.4 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်၊ ဈေးကွက် (odds 1.62) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 58%) မြင့်တယ်။ ကော်နာ ~9.8 (ပုံမှန်)၊ fouls ~19.2 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 1.62,
+        "d": 4.4,
+        "h": 5.5,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.61,
+        "d": 0.21,
+        "h": 0.19
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/celje-vs-salzburg/19873943",
+      "venue": "Stadion Z'dežele, Celje"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 2.8,
+          "fouls": 12.3,
+          "ga": 0.8,
+          "gf": 1.7
+        },
+        "h": {
+          "corners": 9,
+          "fouls": 10.6,
+          "ga": 0.6,
+          "gf": 2.6
+        }
+      },
+      "away": "Celta Vigo",
+      "btts": 0.56,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.4,
+        "corners": 11.08,
+        "fouls": 21.82,
+        "goals": 2.8,
+        "hg": 1.4
+      },
+      "form": {
+        "a": "LWDLW",
+        "h": "LLWLW"
+      },
+      "home": "Celtic",
+      "id": "celtic-celta-vigo",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "နှစ်ဖက် အင်အား နီးစပ်တဲ့ပွဲပါ — Celta Vigo ဘက် အနည်းငယ်သာ သာပြီး သရေ ဖြစ်နိုင်ခြေ မြင့်လို့ သတိနဲ့ ကြည့်ပါ။ ဂိုး 2.8 ဝန်းကျင် မျှော်မှန်းလို့ 2.5 လိုင်းနားမှာ အပြိုင်ဖြစ်တယ်။ ကော်နာ ~11.1 (ပုံမှန်)၊ fouls ~21.8 မျှော်မှန်းထားပြီး ဒိုင် Georgi Kabakov (19.5 fouls/ပွဲ၊ ကတ်ဝါ 2/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 2.62,
+        "d": 3.6,
+        "h": 2.8,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.37,
+        "d": 0.27,
+        "h": 0.37
+      },
+      "ref": {
+        "fouls": 19.5,
+        "name": "Georgi Kabakov",
+        "yellows": 2
+      },
+      "src": "https://statz.ai/h2h/19873950",
+      "venue": "Celtic Park"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 6.8,
+          "fouls": 13.1,
+          "ga": 0.8,
+          "gf": 1.3
+        },
+        "h": {
+          "corners": 3.6,
+          "fouls": 13.2,
+          "ga": 1.7,
+          "gf": 1.3
+        }
+      },
+      "away": "Anderlecht",
+      "btts": 0.6,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.7,
+        "corners": 10.24,
+        "fouls": 26.77,
+        "goals": 3.1,
+        "hg": 1.4
+      },
+      "form": {
+        "a": "WLWWL",
+        "h": "LLLWL"
+      },
+      "home": "Jagiellonia",
+      "id": "jagiellonia-anderlecht",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Anderlecht ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.3 သွင်း၊ 0.8 ပေးထားတယ်၊ ဈေးကွက် (odds 2.3) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3.1 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 60%) မြင့်တယ်။ ကော်နာ ~10.2 (ပုံမှန်)၊ fouls ~26.8 မျှော်မှန်းထားပြီး ဒိုင် Ondřej Berka (32.5 fouls/ပွဲ၊ ကတ်ဝါ 3.5/ပွဲ) က fouls များများ ခေါ်တတ်လို့ Fouls Over ဘက် သတိထားပါ။",
+      "odds": {
+        "a": 2.3,
+        "d": 3.6,
+        "h": 3.13,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.45,
+        "d": 0.24,
+        "h": 0.31
+      },
+      "ref": {
+        "fouls": 32.5,
+        "name": "Ondřej Berka",
+        "yellows": 3.5
+      },
+      "src": "https://statz.ai/h2h/jagiellonia-vs-anderlecht/19873945",
+      "venue": "Stadion Miejski, Białystok"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7,
+          "fouls": 12.1,
+          "ga": 1.9,
+          "gf": 2.1
+        },
+        "h": {
+          "corners": 5.2,
+          "fouls": 10.8,
+          "ga": 1.3,
+          "gf": 1.5
+        }
+      },
+      "away": "Real Sociedad",
+      "btts": 0.6,
+      "conf": "low",
+      "exp": {
+        "ag": 2.1,
+        "corners": 11.32,
+        "fouls": 22.45,
+        "goals": 3.2,
+        "hg": 1.1
+      },
+      "form": {
+        "a": "LWWDW",
+        "h": "LLDDW"
+      },
+      "home": "Lillestrøm",
+      "id": "lillestrm-real-sociedad",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Real Sociedad ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.1 သွင်း၊ 1.9 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်၊ ဈေးကွက် (odds 1.53) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 60%) မြင့်တယ်။ ကော်နာ ~11.3 (ပုံမှန်)၊ fouls ~22.4 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 1.53,
+        "d": 4,
+        "h": 5.5,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.59,
+        "d": 0.22,
+        "h": 0.19
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/lillestrm-vs-sociedad/19873942",
+      "venue": "Åråsen Stadion, Kjeller"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 9.5,
+          "fouls": 15.5,
+          "ga": 1,
+          "gf": 2.5
+        },
+        "h": {
+          "corners": 7,
+          "fouls": 10.5,
+          "ga": 0.5,
+          "gf": 1.5
+        }
+      },
+      "away": "Sparta Prague",
+      "btts": 0.53,
+      "conf": "low",
+      "exp": {
+        "ag": 0.9,
+        "corners": 13.9,
+        "fouls": 24,
+        "goals": 3,
+        "hg": 2.1
+      },
+      "form": {
+        "a": "LWLWD",
+        "h": "DDLWW"
+      },
+      "home": "Olympiakos",
+      "id": "olympiakos-sparta-prague",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Olympiakos ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 2 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.5 သွင်း၊ 0.5 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~13.9 (များနိုင်တယ်)၊ fouls ~24 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.16,
+        "d": 0.2,
+        "h": 0.64
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/olympiacos-fc-vs-sparta-praha/19873949",
+      "venue": "Georgios Karaiskakis, Piraeus"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7.8,
+          "fouls": 12.4,
+          "ga": 0.9,
+          "gf": 3
+        },
+        "h": {
+          "corners": 4.3,
+          "fouls": 9.5,
+          "ga": 0.7,
+          "gf": 1.7
+        }
+      },
+      "away": "Benfica",
+      "btts": 0.53,
+      "conf": "low",
+      "exp": {
+        "ag": 2.3,
+        "corners": 11.26,
+        "fouls": 21.95,
+        "goals": 3.2,
+        "hg": 0.9
+      },
+      "form": {
+        "a": "WWLWW",
+        "h": "WLWWW"
+      },
+      "home": "Omonia",
+      "id": "omonia-benfica",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Benfica ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 4 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 3 သွင်း၊ 0.9 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်၊ ဈေးကွက် (odds 1.4) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~11.3 (ပုံမှန်)၊ fouls ~21.9 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 1.4,
+        "d": 5.5,
+        "h": 8,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.69,
+        "d": 0.18,
+        "h": 0.13
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/omonia-vs-benfica/19873948",
+      "venue": "Neo GSP, Nicosia"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.3,
+          "fouls": 10.9,
+          "ga": 0.7,
+          "gf": 2.2
+        },
+        "h": {
+          "corners": 6.7,
+          "fouls": 13.2,
+          "ga": 2.3,
+          "gf": 1.8
+        }
+      },
+      "away": "Lyon",
+      "btts": 0.63,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.5,
+        "corners": 10.6,
+        "fouls": 23.88,
+        "goals": 3.2,
+        "hg": 1.7
+      },
+      "form": {
+        "a": "WWLWW",
+        "h": "LLLLW"
+      },
+      "home": "Hoffenheim",
+      "id": "hoffenheim-lyon",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Hoffenheim ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.8 သွင်း၊ 2.3 ပေးထားတယ်၊ ဈေးကွက် (odds 2.1) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3.2 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 63%) မြင့်တယ်။ ကော်နာ ~10.6 (ပုံမှန်)၊ fouls ~23.9 မျှော်မှန်းထားပြီး ဒိုင် Halil Umut Meler (25.3 fouls/ပွဲ၊ ကတ်ဝါ 4.3/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။",
+      "odds": {
+        "a": 3.5,
+        "d": 4.2,
+        "h": 2.1,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.32,
+        "d": 0.24,
+        "h": 0.43
+      },
+      "ref": {
+        "fouls": 25.3,
+        "name": "Halil Umut Meler",
+        "yellows": 4.3
+      },
+      "src": "https://statz.ai/h2h/19873947",
+      "venue": "PreZero Arena, Sinsheim"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 3,
+          "fouls": 11.5,
+          "ga": 1,
+          "gf": 0.5
+        },
+        "h": {
+          "corners": 4.5,
+          "fouls": 16,
+          "ga": 2.3,
+          "gf": 1.5
+        }
+      },
+      "away": "Levski Sofia",
+      "btts": 0.57,
+      "conf": "low",
+      "exp": {
+        "ag": 1.1,
+        "corners": 8.5,
+        "fouls": 24.75,
+        "goals": 3,
+        "hg": 1.9
+      },
+      "form": {
+        "a": "WDLLD",
+        "h": "DLWLL"
+      },
+      "home": "Viktoria Plzeň",
+      "id": "viktoria-plzen-levski-sofia",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Europa League",
+      "note": "Viktoria Plzeň ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.5 သွင်း၊ 2.3 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.83) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~8.5 (နည်းနိုင်တယ်)၊ fouls ~24.8 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 4.5,
+        "d": 3.8,
+        "h": 1.83,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.23,
+        "d": 0.23,
+        "h": 0.55
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/plze-vs-levski-sofia/19873940",
+      "venue": "Doosan Arena, Plzeň"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7.3,
+          "fouls": 12.3,
+          "ga": 1.3,
+          "gf": 1.9
+        },
+        "h": {
+          "corners": 3,
+          "fouls": 16,
+          "ga": 1,
+          "gf": 1
+        }
+      },
+      "away": "Panathinaikos",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 1.3,
+        "corners": 10.18,
+        "fouls": 25.08,
+        "goals": 2.6,
+        "hg": 1.3
+      },
+      "form": {
+        "a": "DWDWW",
+        "h": "LLLLD"
+      },
+      "home": "Kairat",
+      "id": "kairat-panathinaikos",
+      "kickoff": "2026-10-22T14:30:00Z",
+      "league": "Conference League",
+      "note": "Panathinaikos ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.9 သွင်း၊ 1.3 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်၊ ဈေးကွက် (odds 1.67) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 2.6 ဝန်းကျင် မျှော်မှန်းလို့ 2.5 လိုင်းနားမှာ အပြိုင်ဖြစ်တယ်။ ကော်နာ ~10.2 (ပုံမှန်)၊ fouls ~25.1 မျှော်မှန်းထားပြီး ဒိုင် Allard Lindhout (21.7 fouls/ပွဲ၊ ကတ်ဝါ 4.7/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 1.67,
+        "d": 4,
+        "h": 5,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.57,
+        "d": 0.24,
+        "h": 0.19
+      },
+      "ref": {
+        "fouls": 21.7,
+        "name": "Allard Lindhout",
+        "yellows": 4.7
+      },
+      "src": "https://statz.ai/h2h/kairat-vs-panathinaikos/19874033",
+      "venue": "Central Stadium, Almaty"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 5.7,
+          "fouls": 12.7,
+          "ga": 0.7,
+          "gf": 3.3
+        },
+        "h": {
+          "corners": 3.3,
+          "fouls": 13.9,
+          "ga": 1.1,
+          "gf": 1.6
+        }
+      },
+      "away": "Brighton",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 2,
+        "corners": 9.4,
+        "fouls": 24.3,
+        "goals": 3.3,
+        "hg": 1.3
+      },
+      "form": {
+        "a": "WWWWW",
+        "h": "WWLWL"
+      },
+      "home": "Jablonec",
+      "id": "jablonec-brighton",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Conference League",
+      "note": "Brighton ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 5 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 3.3 သွင်း၊ 0.7 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်။ ဂိုး 3.3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~9.4 (ပုံမှန်)၊ fouls ~24.3 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.67,
+        "d": 0.19,
+        "h": 0.14
+      },
+      "ref": {
+        "fouls": null,
+        "name": "Sigurd Smehus Kringstad",
+        "yellows": null
+      },
+      "src": "https://statz.ai/h2h/jablonec-vs-brighton/19874025",
+      "venue": "Stadion Střelnice"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 6,
+          "fouls": 11.2,
+          "ga": 0.7,
+          "gf": 3.1
+        },
+        "h": {
+          "corners": 3.8,
+          "fouls": 14.3,
+          "ga": 1.3,
+          "gf": 0.5
+        }
+      },
+      "away": "Lugano",
+      "btts": 0.35,
+      "conf": "low",
+      "exp": {
+        "ag": 0.8,
+        "corners": 9.88,
+        "fouls": 23.75,
+        "goals": 1.8,
+        "hg": 1
+      },
+      "form": {
+        "a": "DWWWW",
+        "h": "DLWLD"
+      },
+      "home": "Getafe",
+      "id": "getafe-lugano",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Conference League",
+      "note": "Getafe ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 0.5 သွင်း၊ 1.3 ပေးထားတယ်၊ ဈေးကွက် (odds 1.83) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 1.8 လောက်ပဲ မျှော်မှန်းလို့ Under 2.5 ဘက် စဉ်းစားနိုင်တယ်၊ BTTS ဖြစ်နိုင်ခြေ (35%) နည်းတယ်။ ကော်နာ ~9.9 (ပုံမှန်)၊ fouls ~23.8 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 5,
+        "d": 3.6,
+        "h": 1.83,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.27,
+        "d": 0.34,
+        "h": 0.39
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/getafe-vs-lugano/19874022",
+      "venue": "Coliseum Alfonso Pérez"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.9,
+          "fouls": 11.5,
+          "ga": 1,
+          "gf": 2.3
+        },
+        "h": {
+          "corners": 3,
+          "fouls": 11,
+          "ga": 3,
+          "gf": 2
+        }
+      },
+      "away": "Copenhagen",
+      "btts": null,
+      "conf": "low",
+      "exp": {
+        "ag": 2.4,
+        "corners": 8.74,
+        "fouls": 22.25,
+        "goals": 4.1,
+        "hg": 1.7
+      },
+      "form": {
+        "a": "WWLWD",
+        "h": "LLWLL"
+      },
+      "home": "Crvena Zvezda",
+      "id": "crvena-zvezda-copenhagen",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Conference League",
+      "note": "Crvena Zvezda ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2 သွင်း၊ 3 ပေးထားတယ်၊ ဈေးကွက် (odds 2.25) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 4.1 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~8.7 (နည်းနိုင်တယ်)၊ fouls ~22.2 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "odds": {
+        "a": 3,
+        "d": 3.6,
+        "h": 2.25,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.32,
+        "d": 0.26,
+        "h": 0.42
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/crvena-zvezda-vs-copenhagen/19874027",
+      "venue": "Stadion Rajko Mitić"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 6.9,
+          "fouls": 12.3,
+          "ga": 1.7,
+          "gf": 2.2
+        },
+        "h": {
+          "corners": 5.4,
+          "fouls": 10.5,
+          "ga": 0.6,
+          "gf": 2.3
+        }
+      },
+      "away": "Hearts",
+      "btts": 0.56,
+      "conf": "medium",
+      "exp": {
+        "ag": 1,
+        "corners": 11.38,
+        "fouls": 24.9,
+        "goals": 3.1,
+        "hg": 2.1
+      },
+      "form": {
+        "a": "LDWDL",
+        "h": "LWWWW"
+      },
+      "home": "Trabzonspor",
+      "id": "trabzonspor-hearts",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Conference League",
+      "note": "Trabzonspor ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 4 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 2.3 သွင်း၊ 0.6 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်။ ဂိုး 3.1 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~11.4 (ပုံမှန်)၊ fouls ~24.9 မျှော်မှန်းထားပြီး ဒိုင် Lawrence Visser (32 fouls/ပွဲ၊ ကတ်ဝါ 6.5/ပွဲ) က fouls များများ ခေါ်တတ်လို့ Fouls Over ဘက် သတိထားပါ။",
+      "p": {
+        "a": 0.17,
+        "d": 0.21,
+        "h": 0.62
+      },
+      "ref": {
+        "fouls": 32,
+        "name": "Lawrence Visser",
+        "yellows": 6.5
+      },
+      "src": "https://statz.ai/h2h/trabzonspor-vs-hearts/19874016",
+      "venue": "Papara Park, Trabzon"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 12,
+          "fouls": 13,
+          "ga": 2,
+          "gf": 1
+        },
+        "h": {
+          "corners": 6,
+          "fouls": 11,
+          "ga": 1.2,
+          "gf": 1.7
+        }
+      },
+      "away": "CSKA Sofia",
+      "btts": 0.55,
+      "conf": "low",
+      "exp": {
+        "ag": 1,
+        "corners": 14.8,
+        "fouls": 24.82,
+        "goals": 3,
+        "hg": 2
+      },
+      "form": {
+        "a": "WLLLL",
+        "h": "WLDDD"
+      },
+      "home": "Nordsjælland",
+      "id": "nordsjlland-cska-sofia",
+      "kickoff": "2026-10-22T16:45:00Z",
+      "league": "Conference League",
+      "note": "Nordsjælland ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.7 သွင်း၊ 1.2 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်။ ကော်နာ ~14.8 (များနိုင်တယ်)၊ fouls ~24.8 မျှော်မှန်းထားပြီး ဒိုင် Robert Jones (29.3 fouls/ပွဲ၊ ကတ်ဝါ 3.3/ပွဲ) က fouls များများ ခေါ်တတ်လို့ Fouls Over ဘက် သတိထားပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.14,
+        "d": 0.21,
+        "h": 0.65
+      },
+      "ref": {
+        "fouls": 29.3,
+        "name": "Robert Jones",
+        "yellows": 3.3
+      },
+      "src": "https://statz.ai/h2h/nordsjlland-vs-cska-sofia/19874029",
+      "venue": "Right to Dream Park, Farum"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 3.4,
+          "fouls": 10.3,
+          "ga": 1.6,
+          "gf": 1.4
+        },
+        "h": {
+          "corners": 7.1,
+          "fouls": 9.6,
+          "ga": 1.3,
+          "gf": 3
+        }
+      },
+      "away": "Atalanta",
+      "btts": 0.59,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.6,
+        "corners": 10.3,
+        "fouls": 22.57,
+        "goals": 2.9,
+        "hg": 1.3
+      },
+      "form": {
+        "a": "LLWWL",
+        "h": "WDDLW"
+      },
+      "home": "Ajax",
+      "id": "ajax-atalanta",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "နှစ်ဖက် အင်အား နီးစပ်တဲ့ပွဲပါ — Atalanta ဘက် အနည်းငယ်သာ သာပြီး သရေ ဖြစ်နိုင်ခြေ မြင့်လို့ သတိနဲ့ ကြည့်ပါ။ ဂိုး 2.9 ဝန်းကျင် မျှော်မှန်းလို့ 2.5 လိုင်းနားမှာ အပြိုင်ဖြစ်တယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 59%) မြင့်တယ်။ ကော်နာ ~10.3 (ပုံမှန်)၊ fouls ~22.6 မျှော်မှန်းထားပြီး ဒိုင် António Nobre (28.5 fouls/ပွဲ၊ ကတ်ဝါ 5/ပွဲ) က fouls များများ ခေါ်တတ်လို့ Fouls Over ဘက် သတိထားပါ။",
+      "odds": {
+        "a": 2.5,
+        "d": 3.5,
+        "h": 2.6,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.42,
+        "d": 0.26,
+        "h": 0.32
+      },
+      "ref": {
+        "fouls": 28.5,
+        "name": "António Nobre",
+        "yellows": 5
+      },
+      "src": "https://statz.ai/h2h/ajax-vs-atalanta/19874014",
+      "venue": "Johan Cruijff ArenA"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 5.2,
+          "fouls": 9.5,
+          "ga": 1,
+          "gf": 2.5
+        },
+        "h": {
+          "corners": 3.7,
+          "fouls": 11.7,
+          "ga": 0.9,
+          "gf": 1.4
+        }
+      },
+      "away": "Freiburg",
+      "btts": 0.59,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.3,
+        "corners": 9.34,
+        "fouls": 21.1,
+        "goals": 3,
+        "hg": 1.7
+      },
+      "form": {
+        "a": "WDWWL",
+        "h": "DWDWL"
+      },
+      "home": "Monaco",
+      "id": "monaco-freiburg",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "Monaco ဘက် အနည်းငယ် လေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 2 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.4 သွင်း၊ 0.9 ပေးထားတယ်၊ ဈေးကွက် (odds 2.3) ကလည်း သူတို့ဘက် ယိမ်းတယ်၊ ဒါပေမယ့် သရေ ဖြစ်နိုင်ခြေ ရှိလို့ Double Chance က ပိုလုံခြုံတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 59%) မြင့်တယ်။ ကော်နာ ~9.3 (ပုံမှန်)၊ fouls ~21.1 မျှော်မှန်းထားပြီး ဒိုင် Samuel Barrott (20 fouls/ပွဲ၊ ကတ်ဝါ 3.5/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 3,
+        "d": 3.6,
+        "h": 2.3,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.29,
+        "d": 0.25,
+        "h": 0.45
+      },
+      "ref": {
+        "fouls": 20,
+        "name": "Samuel Barrott",
+        "yellows": 3.5
+      },
+      "src": "https://statz.ai/h2h/monaco-vs-freiburg/19874011",
+      "venue": "Stade Louis II"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.5,
+          "fouls": 9.8,
+          "ga": 0.5,
+          "gf": 1.9
+        },
+        "h": {
+          "corners": 4.1,
+          "fouls": 12.9,
+          "ga": 1.3,
+          "gf": 1.3
+        }
+      },
+      "away": "Gent",
+      "btts": 0.5,
+      "conf": "medium",
+      "exp": {
+        "ag": 1,
+        "corners": 9.16,
+        "fouls": 23.03,
+        "goals": 2.5,
+        "hg": 1.5
+      },
+      "form": {
+        "a": "WDWWW",
+        "h": "WDLLL"
+      },
+      "home": "Braga",
+      "id": "braga-gent",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "Braga ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 1 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.3 သွင်း၊ 1.3 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.8) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 2.5 ဝန်းကျင် မျှော်မှန်းလို့ 2.5 လိုင်းနားမှာ အပြိုင်ဖြစ်တယ်။ ကော်နာ ~9.2 (ပုံမှန်)၊ fouls ~23 မျှော်မှန်းထားပြီး ဒိုင် Andris Treimanis (24.7 fouls/ပွဲ၊ ကတ်ဝါ 2.7/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။",
+      "odds": {
+        "a": 4,
+        "d": 3.5,
+        "h": 1.8,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.25,
+        "d": 0.27,
+        "h": 0.48
+      },
+      "ref": {
+        "fouls": 24.7,
+        "name": "Andris Treimanis",
+        "yellows": 2.7
+      },
+      "src": "https://statz.ai/h2h/braga-vs-gent/19874001",
+      "venue": "Estádio Municipal de Braga"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 5.4,
+          "fouls": 10.5,
+          "ga": 2,
+          "gf": 1.9
+        },
+        "h": {
+          "corners": 5.2,
+          "fouls": 12.5,
+          "ga": 1,
+          "gf": 1.9
+        }
+      },
+      "away": "Sint-Truiden",
+      "btts": 0.59,
+      "conf": "medium",
+      "exp": {
+        "ag": 1.2,
+        "corners": 10.36,
+        "fouls": 20.5,
+        "goals": 3,
+        "hg": 1.8
+      },
+      "form": {
+        "a": "WLLLW",
+        "h": "WDWDW"
+      },
+      "home": "Midtjylland",
+      "id": "midtjylland-sint-truiden",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "Midtjylland ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.9 သွင်း၊ 1 ပေးထားတယ်၊ အိမ်ကွင်းအားသာချက်လည်း ရှိတယ်၊ ဈေးကွက် (odds 1.83) ကလည်း သူတို့ဘက် ယိမ်းတယ်။ ဂိုး 3 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 59%) မြင့်တယ်။ ကော်နာ ~10.4 (ပုံမှန်)၊ fouls ~20.5 မျှော်မှန်းထားပြီး ဒိုင် Juxhin Xhaja (14 fouls/ပွဲ၊ ကတ်ဝါ 5/ပွဲ) က fouls နည်းနည်းပဲ ခေါ်တတ်လို့ Fouls Under ဘက် လေးတယ်။",
+      "odds": {
+        "a": 3.8,
+        "d": 3.8,
+        "h": 1.83,
+        "src": "bettingodds.com"
+      },
+      "p": {
+        "a": 0.25,
+        "d": 0.24,
+        "h": 0.51
+      },
+      "ref": {
+        "fouls": 14,
+        "name": "Juxhin Xhaja",
+        "yellows": 5
+      },
+      "src": "https://statz.ai/h2h/midtjylland-vs-sint-truiden/19874009",
+      "venue": "MCH Arena, Herning"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 7.1,
+          "fouls": 11.2,
+          "ga": 1.1,
+          "gf": 1.9
+        },
+        "h": {
+          "corners": 4.3,
+          "fouls": 12,
+          "ga": 1.3,
+          "gf": 1.3
+        }
+      },
+      "away": "Twente",
+      "btts": 0.49,
+      "conf": "low",
+      "exp": {
+        "ag": 1.4,
+        "corners": 10.84,
+        "fouls": 23.02,
+        "goals": 2.7,
+        "hg": 1.3
+      },
+      "form": {
+        "a": "WWDWL",
+        "h": "DLLWL"
+      },
+      "home": "Lincoln Red Imps",
+      "id": "lincoln-red-imps-twente",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "Twente ဘက်ကို ဦးစားပေးပါတယ် — နောက်ဆုံး 5 ပွဲမှာ 3 ပွဲနိုင်ထားပြီး ပွဲတိုင်း ပျမ်းမျှ ဂိုး 1.9 သွင်း၊ 1.1 ပေးထားတယ်၊ အဝေးကွင်းဖြစ်ပေမယ့် အင်အားသာတယ်။ ဂိုး 2.7 ဝန်းကျင် မျှော်မှန်းလို့ 2.5 လိုင်းနားမှာ အပြိုင်ဖြစ်တယ်။ ကော်နာ ~10.8 (ပုံမှန်)၊ fouls ~23 မျှော်မှန်းထားပြီး ဒိုင် Matteo Marcenaro (23.7 fouls/ပွဲ၊ ကတ်ဝါ 4/ပွဲ) က ပုံမှန်အဆင့် ဒိုင်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.77,
+        "d": 0.16,
+        "h": 0.08
+      },
+      "ref": {
+        "fouls": 23.7,
+        "name": "Matteo Marcenaro",
+        "yellows": 4
+      },
+      "src": "https://statz.ai/h2h/red-imps-vs-fc-twente/19874003",
+      "venue": "Victoria Stadium, Gibraltar"
+    },
+    {
+      "avg": {
+        "a": {
+          "corners": 4.4,
+          "fouls": 13.5,
+          "ga": 0.9,
+          "gf": 1.9
+        },
+        "h": {
+          "corners": 5.6,
+          "fouls": 15.7,
+          "ga": 2.7,
+          "gf": 1.9
+        }
+      },
+      "away": "Hajduk Split",
+      "btts": 0.62,
+      "conf": "low",
+      "exp": {
+        "ag": 2.1,
+        "corners": 10,
+        "fouls": 25.6,
+        "goals": 3.6,
+        "hg": 1.5
+      },
+      "form": {
+        "a": "WLWWW",
+        "h": "LLWLL"
+      },
+      "home": "Thun",
+      "id": "thun-hajduk-split",
+      "kickoff": "2026-10-22T19:00:00Z",
+      "league": "Conference League",
+      "note": "နှစ်ဖက် အင်အား နီးစပ်တဲ့ပွဲပါ — Hajduk Split ဘက် အနည်းငယ်သာ သာပြီး သရေ ဖြစ်နိုင်ခြေ မြင့်လို့ သတိနဲ့ ကြည့်ပါ။ ဂိုး 3.6 ဝန်းကျင် မျှော်မှန်းလို့ Over 2.5 ဘက် လေးတယ်၊ နှစ်ဖက်လုံး ဂိုးသွင်းနိုင်ခြေ (BTTS 62%) မြင့်တယ်။ ကော်နာ ~10 (ပုံမှန်)၊ fouls ~25.6 မျှော်မှန်းထားပြီး ဒိုင် အချက်အလက် မပြည့်စုံလို့ fouls ခန့်မှန်းချက်ကို သတိနဲ့ ကြည့်ပါ။ (ဒေတာ မပြည့်စုံလို့ ယုံကြည်မှု နိမ့်)",
+      "p": {
+        "a": 0.39,
+        "d": 0.27,
+        "h": 0.34
+      },
+      "ref": null,
+      "src": "https://statz.ai/h2h/thun-vs-hajduk-split/19874007",
+      "venue": "Stockhorn Arena, Thun"
+    }
+  ],
+  "source": "statz.ai + bettingodds.com",
+  "updatedAt": "2026-10-21T15:34:01Z"
+}
