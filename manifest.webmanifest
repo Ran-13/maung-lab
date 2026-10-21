@@ -1,0 +1,29 @@
+{
+ "name": "Maung Lab",
+ "short_name": "Maung Lab",
+ "description": "ဘောလုံးပွဲ ခန့်မှန်းချက် — ရလဒ်၊ ဘော်ဒီ၊ ဂိုးပေါင်း၊ corners၊ fouls၊ ကတ်",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f2f4f3",
+ "theme_color": "#ffffff",
+ "lang": "my",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

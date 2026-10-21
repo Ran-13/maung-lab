@@ -7,7 +7,12 @@
 <meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="Maung Lab">
 <meta property="og:description" content="ဘောလုံးပွဲ ခန့်မှန်းချက် — ရလဒ်၊ ဘော်ဒီ၊ ဂိုးပေါင်း၊ corners၊ fouls။ နေ့စဉ် update။">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313201a'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%23ffffff'%3EML%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Maung Lab">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Maung Lab</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -199,6 +204,12 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 #stopAi{background:var(--miss)}
 .err{font-size:12.5px;color:var(--miss)}
 @media (prefers-reduced-motion:reduce){.msg.think{animation:none}}
+.kyay{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:8px}
+.kyay div{background:var(--soft);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;min-width:0}
+.kyay small{font-size:11px;color:var(--muted)}
+.kyay b{font-family:var(--f-display);font-size:19px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}
+.kyay b .num,.kyay b.num{font-family:var(--f-mono);font-size:16px;color:var(--accent)}
+.inst{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 11px;margin-left:4px}
 .foot{font-size:11.5px;color:var(--muted);text-align:center;margin:18px 0 0}
 /* bottom nav */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -232,6 +243,7 @@ const MODEL=(function(){
   function normCdf(z){const t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2);const q=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-q:q;}
   const foulsOver=(line,mean)=>1-normCdf((line-mean)/(1.35*Math.sqrt(mean)));
   const cornersOver=(line,mean)=>nbOver(line,mean,1.3);
+  const cardsOver=(line,mean)=>nbOver(line,mean,1.5);
   const mainLine=m=>Math.round(m-0.5)+0.5;
   const norm3=o=>{if(!o)return null;let h=N(o.h),d=N(o.d),a=N(o.a);if(h==null||d==null||a==null)return null;const s=h+d+a;return s>0?{h:h/s,d:d/s,a:a/s}:null};
   const mkt=o=>{if(!o)return null;const h=N(o.h),d=N(o.d),a=N(o.a);if(!(h>1&&d>1&&a>1))return null;return norm3({h:1/h,d:1/d,a:1/a})};
@@ -287,6 +299,10 @@ const MODEL=(function(){
       goalsLad=[0.5,1.5,2.5,3.5,4.5].map(L=>({L,po:over(L)}));
     }
     const cm=N(e.corners),fm=N(e.fouls);
+    // Yellow cards: team card averages (if given) blended with the referee's rate shrunk toward a 4.2 norm
+    const rY=N(m.ref&&m.ref.yellows),hC=N(m.avg&&m.avg.h&&m.avg.h.cards),aC=N(m.avg&&m.avg.a&&m.avg.a.cards);
+    const kBase=(hC!=null&&aC!=null)?hC+aC:4.2;
+    const km=(rY!=null||(hC!=null&&aC!=null))?Math.min(7,Math.max(1.5,.5*kBase+.5*(rY!=null?.5*rY+.5*4.2:kBase))):null;
     const side=(po,L)=>po>=.5?{t:"Over "+L,p:po,side:"O",L}:{t:"Under "+L,p:1-po,side:"U",L};
     const corners=cm!=null?side(cornersOver(mainLine(cm),cm),mainLine(cm)):null;
     const fouls=fm!=null?side(foulsOver(mainLine(fm),fm),mainLine(fm)):null;
@@ -313,8 +329,22 @@ const MODEL=(function(){
     if(btts!=null)mk.push({key:"btts",title:"နှစ်သင်းလုံး ဂိုးသွင်း",sel:btts>=.5?"Yes":"No",W:Math.max(btts,1-btts),L:Math.min(btts,1-btts)});
     if(corners)mk.push({key:"c",title:`Corners · ခန့်မှန်း ${cm.toFixed(1)}`,sel:corners.t,W:corners.p,L:1-corners.p});
     if(fouls)mk.push({key:"f",title:`Fouls · ခန့်မှန်း ${fm.toFixed(1)}`,sel:fouls.t,W:fouls.p,L:1-fouls.p});
+    let cards=null;
+    if(km!=null){const L=mainLine(km),po=cardsOver(L,km);cards=po>=.5?{t:"Over "+L,p:po,side:"O",L}:{t:"Under "+L,p:1-po,side:"U",L};
+      mk.push({key:"k",title:`ဝါကတ် · ခန့်မှန်း ${km.toFixed(1)}`,sel:cards.t,W:cards.p,L:1-cards.p});}
     mk.forEach(x=>{x.p=x.W/(x.W+x.L||1);x.fair=x.W>0?1+x.L/x.W:null;});
-    return {p1,pm,pk,pick,score,top,o25,btts,goalsLad,ah,gl,markets:mk,
+    // Myanmar-style ကြေး lines: even-money bet, partial win/loss of x% when the margin (or total) lands exactly on n.
+    // Fair x = (P(below n) - P(above n)) / P(exactly n) from the backer's side; smallest n with x >= -100%.
+    let kyay=null;
+    if(M){
+      const fav=hg>=ag?"h":"a";
+      const solve=val=>{for(let n=0;n<=6;n++){let lo=0,eq=0,hi=0;M.forEach(c=>{const v=val(c);if(v<n)lo+=c.p;else if(v>n)hi+=c.p;else eq+=c.p;});if(eq<1e-6)continue;const x=(lo-hi)/eq;if(x>=-1)return {n,x:Math.max(-1,Math.min(1,x))};}return null;};
+      const body=solve(c=>fav==="h"?c.i-c.j:c.j-c.i);
+      const goal=solve(c=>c.i+c.j);
+      const fx=k=>{const v=Math.round(k.x*10)*10;return `${k.n}${v>=0?"+":"-"}${Math.abs(v)}`;};
+      kyay={body:body&&{team:fav==="h"?m.home:m.away,txt:fx(body)},goal:goal&&{txt:fx(goal)}};
+    }
+    return {p1,pm,pk,pick,score,top,o25,btts,goalsLad,ah,gl,markets:mk,kyay,cards,km,kLad:km!=null?lad(km,cardsOver,1):null,
       corners,fouls,cm,fm,hg,ag,
       cLad:cm!=null?lad(cm,cornersOver,1):null,fLad:fm!=null?lad(fm,foulsOver,2):null};
   }
@@ -329,6 +359,7 @@ const MODEL=(function(){
     if(A.score)g.score=A.score.i===hs&&A.score.j===as;
     if(A.corners&&N(r.corners)!=null)g.corners=A.corners.side==="O"?N(r.corners)>A.corners.L:N(r.corners)<A.corners.L;
     if(A.fouls&&N(r.fouls)!=null)g.fouls=A.fouls.side==="O"?N(r.fouls)>A.fouls.L:N(r.fouls)<A.fouls.L;
+    if(A.cards&&N(r.cards)!=null)g.cards=A.cards.side==="O"?N(r.cards)>A.cards.L:N(r.cards)<A.cards.L;
     const a=A.markets.find(x=>x.key==="ah");
     if(a){const q=Math.abs(Math.round(a.hH*4))%2===1,subs=q?[a.hH-.25,a.hH+.25]:[a.hH];let s=0;subs.forEach(h=>{const d=(hs-as)+h;s+=d>0?1:d<0?-1:0});if(!a.homeSide)s=-s;if(s!==0)g.ah=s>0;}
     return g;
@@ -388,7 +419,8 @@ function topBar(){
     $("favBtn").onclick=()=>{FAV.has(detail)?FAV.delete(detail):FAV.add(detail);saveFav();topBar();};
     return;}
   const d=curDay();
-  $("bar").innerHTML=`<div class="logo">Maung<span>Lab</span></div><span class="sp"></span><span class="upd">${d&&d.updatedAt&&!searchOpen?"Update "+dm(d.updatedAt)+" "+hm(d.updatedAt):""}</span>${tab==="matches"?`<button class="ib${searchOpen?" on":""}" id="srchBtn" aria-label="အသင်းရှာ">${icon.search}</button>`:""}`;
+  $("bar").innerHTML=`<div class="logo">Maung<span>Lab</span></div><span class="sp"></span><span class="upd">${d&&d.updatedAt&&!searchOpen?"Update "+dm(d.updatedAt)+" "+hm(d.updatedAt):""}</span>${tab==="matches"?`<button class="ib${searchOpen?" on":""}" id="srchBtn" aria-label="အသင်းရှာ">${icon.search}</button>`:""}${window.__mlInstall?`<button class="inst" id="instBtn">App ထည့်</button>`:""}`;
+  const ib=$("instBtn");if(ib)ib.onclick=async()=>{const ev=window.__mlInstall;window.__mlInstall=null;topBar();try{ev.prompt();await ev.userChoice}catch(e){}};
   const sb=$("srchBtn");if(sb)sb.onclick=()=>{searchOpen=!searchOpen;if(!searchOpen)query="";render();if(searchOpen){const i=$("q");i&&i.focus();}};
 }
 function dayStrip(){
@@ -447,7 +479,7 @@ function screenTop(){
   return `${dayStrip()}${valHtml}<section class="sec"><div class="sec-h">ဖြစ်နိုင်ခြေ အမြင့်ဆုံး</div>${body}</section>`;
 }
 function screenRecord(){
-  const keys=["result","ah","goals","corners","fouls","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",score:"ရလဒ်အတိအကျ"};
+  const keys=["result","ah","goals","corners","fouls","cards","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",cards:"ဝါကတ်",score:"ရလဒ်အတိအကျ"};
   const tot={};keys.forEach(k=>tot[k]={h:0,n:0});
   const done=[];
   allMatches().forEach(m=>{const a=A(m),g=grade(m,a);if(!g)return;done.push({m,g});keys.forEach(k=>{if(g[k]!=null){tot[k].n++;if(g[k])tot[k].h++;}});});
@@ -472,13 +504,14 @@ function detailHtml(){
   const m=findMatch(detail);if(!m)return `<div class="empty"><b>ပွဲ မတွေ့ပါ</b></div>`;
   const a=A(m),r=m.res,fin=r&&N(r.hs)!=null,g=fin?grade(m,a):null;
   const cd=!fin&&m.kickoff?until(m.kickoff):null;
-  const badges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
+  const badges=g?`<div class="res">${[["result","ရလဒ်"],["ah","ဘော်ဒီ"],["goals","ဂိုး"],["corners","Corners"],["fouls","Fouls"],["cards","ကတ်"],["score","Score"]].filter(([k])=>g[k]!=null).map(([k,l])=>`<span class="${g[k]?"y":"n"}">${l} ${g[k]?"✓":"✕"}</span>`).join("")}</div>`:"";
   const hero=`<div class="hero">
     <div class="vs"><div class="tn">${esc(m.home)}${form(m.form&&m.form.h)}</div>
       <div class="big">${fin?`<b>${r.hs}-${r.as}</b><small>ခန့်မှန်း ${a.score.i}-${a.score.j}</small>`:`<b>${a.score?a.score.i+"-"+a.score.j:"—"}</b><small>${cd?"ကန်ရန် "+cd:"စပြီး"}</small>`}</div>
       <div class="tn">${esc(m.away)}${form(m.form&&m.form.a)}</div></div>
     ${badges}
     ${a.p1?`<div class="bar3" aria-label="1 X 2"><div class="h" style="flex:${a.p1.h}">${pct(a.p1.h)}</div><div class="d" style="flex:${a.p1.d}">${pct(a.p1.d)}</div><div class="a" style="flex:${a.p1.a}">${pct(a.p1.a)}</div></div>`:""}
+    ${a.kyay&&(a.kyay.body||a.kyay.goal)?`<div class="kyay">${a.kyay.body?`<div><small>ဘော်ဒီ</small><b>${esc(a.kyay.body.team)} <span class="num">${a.kyay.body.txt}</span></b></div>`:""}${a.kyay.goal?`<div><small>ဂိုးပေါင်း</small><b class="num">${a.kyay.goal.txt}</b></div>`:""}</div>`:""}
     ${a.pick?`<div class="pickc"><div class="l"><small>${esc(CONF[m.conf]||"ရွေးချယ်")}</small><b>${esc(a.pick.label)}</b></div>${a.pick.p!=null?`<div class="p"><b>${pct(a.pick.p)}</b><small>@${fair(a.pick.p)}</small></div>`:""}</div>`:""}
   </div>`;
   const tabsList=[["pred","ခန့်မှန်း"],["lines","Lines"],["stats","Stats"]];
@@ -486,7 +519,7 @@ function detailHtml(){
   let panel="";
   if(dtab==="pred"){
     panel=`${m.note?`<div class="card note">${esc(m.note)}</div>`:""}
-      <div class="card">${a.markets.map(x=>marketRow(m,a,x)).join("")}</div>
+      <div class="card">${a.markets.filter(x=>x.key!=="gl").map(x=>marketRow(m,a,x)).join("")}</div>
       ${a.top?`<div class="scores">${a.top.slice(0,3).map(c=>`<div><b>${c.i}-${c.j}</b><small>${pct(c.p)}</small></div>`).join("")}</div>`:""}`;
   }else if(dtab==="lines"){
     const pe=(W,L)=>W/(W+L||1);
@@ -495,7 +528,8 @@ function detailHtml(){
     panel=t("ဘော်ဒီ",short(m.home),short(m.away),a.ah&&a.ah.lad.map(x=>({l:fmtL(x.H),p1:pe(x.hW,x.hL),p2:pe(x.aW,x.aL),main:x.main})))
       +t("ဂိုးပေါင်း","Over","Under",a.gl&&a.gl.lad.map(x=>({l:x.T,p1:pe(x.oW,x.oL),p2:pe(x.uW,x.uL),main:x.main})))
       +t(`Corners · ${a.cm!=null?a.cm.toFixed(1):"—"}`,"Over","Under",a.cLad&&a.cLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})))
-      +t(`Fouls · ${a.fm!=null?a.fm.toFixed(1):"—"}`,"Over","Under",a.fLad&&a.fLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})));
+      +t(`Fouls · ${a.fm!=null?a.fm.toFixed(1):"—"}`,"Over","Under",a.fLad&&a.fLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})))
+      +t(`ဝါကတ် · ${a.km!=null?a.km.toFixed(1):"—"}`,"Over","Under",a.kLad&&a.kLad.map(x=>({l:x.L,p1:x.po,p2:1-x.po,main:x.main})));
   }else if(dtab==="stats"){
     const h=(m.avg&&m.avg.h)||{},w=(m.avg&&m.avg.a)||{};
     const cmp=(lab,x,y)=>{x=N(x);y=N(y);if(x==null&&y==null)return "";const s=(x||0)+(y||0)||1;return `<div class="rw"><span class="lab">${lab}</span><span class="v">${x??"—"}</span><span class="bars"><i class="hh" style="flex:${(x||0)/s}"></i><i class="aa" style="flex:${(y||0)/s}"></i></span><span class="v">${y??"—"}</span></div>`};
@@ -523,6 +557,8 @@ function render(){
 function openDetail(id){scrollY=window.scrollY;detail=id;dtab="pred";openMk=null;render();window.scrollTo(0,0);}
 function closeDetail(){detail=null;render();window.scrollTo(0,scrollY);}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&detail)closeDetail();});
+window.addEventListener("ml-install",()=>{if(!detail)topBar();});
+window.addEventListener("appinstalled",()=>{window.__mlInstall=null;if(!detail)topBar();});
 $("view").addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
   if(b.dataset.day){sel=b.dataset.day;render();return;}
@@ -559,6 +595,9 @@ async function load(first){
 load(true);setInterval(()=>{if(!document.hidden)load(false)},300000);
 })();
 </script>
-
+<script>
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();window.__mlInstall=e;try{document.getElementById("bar")&&window.dispatchEvent(new Event("ml-install"))}catch(_){}});
+</script>
 </body>
 </html>
