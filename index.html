@@ -210,6 +210,19 @@ main{padding-block:6px calc(84px + env(safe-area-inset-bottom,0px))}
 .kyay b{font-family:var(--f-display);font-size:19px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}
 .kyay b .num,.kyay b.num{font-family:var(--f-mono);font-size:16px;color:var(--accent)}
 .inst{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 11px;margin-left:4px}
+.mh{display:flex;align-items:center;justify-content:space-between}
+.stepper{display:inline-flex;align-items:center;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:2px}
+.stepper button{width:30px;height:28px;border-radius:999px;font-size:17px;font-weight:600;color:var(--ink)}
+.stepper button:disabled{color:var(--line);cursor:default}
+.stepper b{min-width:24px;text-align:center;font-size:15px;color:var(--ink)}
+.msum{display:flex;align-items:center;gap:16px;padding:11px 14px;border-top:1px solid var(--line);background:var(--soft)}
+.msum div{display:flex;flex-direction:column}
+.msum small{font-size:11px;color:var(--muted)}
+.msum b{font-size:18px;font-weight:600}
+.msum .ib{margin-left:auto;color:var(--ink)}
+.hint{font-size:12px;color:var(--muted);margin:2px 2px 0}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);background:var(--ink);color:var(--card);font-size:13px;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:20;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 .foot{font-size:11.5px;color:var(--muted);text-align:center;margin:18px 0 0}
 /* bottom nav */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -350,7 +363,7 @@ const MODEL=(function(){
   }
   function fmtL(x){if(Math.abs(x)<1e-9)return "0";return (x>0?"+":"")+(Math.round(x*100)/100);}
   const ev=(mkObj,odds)=>mkObj.W*(odds-1)-mkObj.L;
-  function tips(m,A){return A.markets.filter(x=>x.key!=="ah"&&x.key!=="gl").map(x=>({mk:x.title.split(" · ")[0],t:x.sel,p:x.p,key:x.key}));}
+  function tips(m,A){return A.markets.filter(x=>x.key!=="gl").map(x=>({mk:x.title.split(" · ")[0].replace(" (Asian Handicap)",""),t:x.sel,p:x.p,fair:x.fair,key:x.key,x}));}
   function grade(m,A){
     const r=m.res;if(!r||N(r.hs)==null||N(r.as)==null)return null;
     const hs=N(r.hs),as=N(r.as),o=hs>as?"h":hs<as?"a":"d",g={};
@@ -374,7 +387,10 @@ if(typeof document==="undefined")return;
 const {analyze,tips,grade,ev,fmtL,N}=MODEL;
 const TZ="Asia/Rangoon";
 const ORDER=["Champions League","Europa League","Conference League","Premier League","La Liga","Serie A","Bundesliga","Ligue 1","Eredivisie","Primeira Liga","Championship","Süper Lig","Belgian Pro League","Scottish Premiership","Saudi Pro League","MLS","Brasileirão","Liga Profesional"];
-let DAYS=[],sel=null,league="all",tab="matches",detail=null,dtab="pred",scrollY=0,query="",searchOpen=false,openMk=null;
+let DAYS=[],sel=null,league="all",tab="matches",detail=null,dtab="pred",scrollY=0,query="",searchOpen=false,openMk=null,tipF="all";
+let maungN=5;try{const v=parseInt(localStorage.getItem("ml.maungN"),10);if(v>=5&&v<=12)maungN=v;}catch(e){}
+const TIPF=[["all","အားလုံး"],["res","ရလဒ်"],["ah","ဘော်ဒီ"],["o25","ဂိုး"],["btts","နှစ်ဖက်ဂိုး"],["c","ထောင့်ကန်"],["f","Fouls"],["k","ကတ်"]];
+const tokenOf=m=>m._d+"~"+m.id;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const pct=p=>Math.round(p*100)+"%";
@@ -408,15 +424,17 @@ const FOOT=`<p class="foot">ခန့်မှန်းချက်သာ · 18+
 const icon={
   back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+  share:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
   star:f=>`<svg width="21" height="21" viewBox="0 0 24 24" fill="${f?"currentColor":"none"}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>`
 };
 
 /* ---------- bars ---------- */
 function topBar(){
   if(detail){const m=findMatch(detail);const f=FAV.has(detail);
-    $("bar").innerHTML=`<button class="ib back" id="backBtn" aria-label="နောက်သို့">${icon.back}</button><div class="bar-t"><b>${m?esc(m.home)+" vs "+esc(m.away):""}</b><small>${m?esc(m.league||"")+" · "+dm(m.kickoff)+" "+hm(m.kickoff):""}</small></div><span class="sp"></span><button class="ib${f?" on":""}" id="favBtn" aria-pressed="${f}" aria-label="ဒီပွဲကို မှတ်ထားမယ်">${icon.star(f)}</button>`;
+    $("bar").innerHTML=`<button class="ib back" id="backBtn" aria-label="နောက်သို့">${icon.back}</button><div class="bar-t"><b>${m?esc(m.home)+" vs "+esc(m.away):""}</b><small>${m?esc(m.league||"")+" · "+dm(m.kickoff)+" "+hm(m.kickoff):""}</small></div><span class="sp"></span><button class="ib" id="shareBtn" aria-label="Share">${icon.share}</button><button class="ib${f?" on":""}" id="favBtn" aria-pressed="${f}" aria-label="ဒီပွဲကို မှတ်ထားမယ်">${icon.star(f)}</button>`;
     $("backBtn").onclick=closeDetail;
     $("favBtn").onclick=()=>{FAV.has(detail)?FAV.delete(detail):FAV.add(detail);saveFav();topBar();};
+    $("shareBtn").onclick=()=>{const mm=findMatch(detail);if(mm)shareOut(`${mm.home} vs ${mm.away}`,matchShareText(mm),tokenOf(mm));};
     return;}
   const d=curDay();
   $("bar").innerHTML=`<div class="logo">Maung<span>Lab</span></div><span class="sp"></span><span class="upd">${d&&d.updatedAt&&!searchOpen?"Update "+dm(d.updatedAt)+" "+hm(d.updatedAt):""}</span>${tab==="matches"?`<button class="ib${searchOpen?" on":""}" id="srchBtn" aria-label="အသင်းရှာ">${icon.search}</button>`:""}${window.__mlInstall?`<button class="inst" id="instBtn">App ထည့်</button>`:""}`;
@@ -469,15 +487,53 @@ function screenMatches(){
 }
 function screenTop(){
   const d=curDay();if(!d)return `${dayStrip()}<div class="empty"><b>ဒေတာ မရှိသေးပါ</b></div>`;
-  const list=[],vals=[];
-  (d.matches||[]).forEach(mm=>{const m=Object.assign({_d:d.date},mm);if(m.res&&N(m.res.hs)!=null)return;const a=A(m);
-    tips(m,a).forEach(t=>{if(t.p>=.6&&1/t.p>=1.2)list.push(Object.assign({m},t));});
-    const o=ODDS[uid(m)]||{};a.markets.forEach(mk=>{if(o[mk.key]){const e=ev(mk,o[mk.key]);if(e>0)vals.push({m,mk,o:o[mk.key],e});}});});
-  list.sort((x,y)=>y.p-x.p);vals.sort((x,y)=>y.e-x.e);
+  const now=new Date(),list=[],vals=[],legs=[];
+  (d.matches||[]).forEach(mm=>{const m=Object.assign({_d:d.date},mm);if(m.res&&N(m.res.hs)!=null)return;const a=A(m);const o=ODDS[uid(m)]||{};
+    const ts=tips(m,a).filter(t=>tipF==="all"||t.key===tipF);
+    ts.forEach(t=>{if(t.p>=.6&&t.fair>=1.2)list.push(Object.assign({m},t));});
+    a.markets.forEach(mk=>{if(o[mk.key]){const e=ev(mk,o[mk.key]);if(e>0)vals.push({m,mk,o:o[mk.key],e});}});
+    if(m.kickoff&&new Date(m.kickoff)>now){const best=ts.filter(t=>t.fair>=1.15).sort((x,y)=>y.p-x.p)[0];if(best)legs.push(Object.assign({m,odds:o[best.key]||null},best));}
+  });
+  list.sort((x,y)=>y.p-x.p);vals.sort((x,y)=>y.e-x.e);legs.sort((x,y)=>y.p-x.p);
+  const chips=`<div class="strip">${TIPF.map(([k,l])=>`<button class="chip" aria-pressed="${tipF===k}" data-tf="${k}">${l}</button>`).join("")}</div>`;
+  // maung: best leg per upcoming match, top N by probability
+  const pick=legs.slice(0,maungN);
+  let maung="";
+  if(legs.length){
+    const pAll=pick.reduce((s,l)=>s*l.p,1),oFair=pick.reduce((s,l)=>s*l.fair,1);
+    const allUser=pick.every(l=>l.odds),oUser=allUser?pick.reduce((s,l)=>s*l.odds,1):null;
+    maung=`<section class="sec"><div class="sec-h mh"><span>မောင်း</span><span class="stepper"><button data-mn="-1" aria-label="လျှော့" ${maungN<=5?"disabled":""}>−</button><b class="num">${maungN}</b><button data-mn="1" aria-label="တိုး" ${maungN>=12?"disabled":""}>+</button></span></div>
+      <div class="group">${pick.map((l,i)=>`<button class="tip" data-m="${esc(uid(l.m))}"><span class="n"><small>${i+1}. ${esc(l.m.home)} vs ${esc(l.m.away)} · ${hm(l.m.kickoff)}</small><b>${esc(l.mk)} · ${esc(l.t)}</b></span><span class="p"><b>${pct(l.p)}</b><small>@${(l.odds||l.fair).toFixed(2)}</small></span></button>`).join("")}
+      <div class="msum"><div><small>စုစုပေါင်း odds</small><b class="num">${(oUser||oFair).toFixed(2)}</b></div><div><small>ပေါက်နိုင်ခြေ</small><b class="num">${pAll<.01?(pAll*100).toFixed(2):(pAll*100).toFixed(1)}%</b></div>${oUser?`<div><small>Value</small><b class="num ${pAll*oUser>1?"pos":"neg"}">${pAll*oUser>1?"+":""}${Math.round((pAll*oUser-1)*100)}%</b></div>`:""}<button class="ib" data-sharemaung="1" aria-label="Share">${icon.share}</button></div></div>
+      ${legs.length<maungN?`<p class="hint">ကန်ရန် ကျန်တဲ့ ပွဲ ${legs.length} ပွဲပဲ ရှိပါတယ်</p>`:""}</section>`;
+  }
+  window.__mlMaung=pick;
   const valHtml=vals.length?`<section class="sec"><div class="sec-h">သင်ထည့်ထားတဲ့ odds အရ value ရှိတာ</div><div class="group">${vals.map(v=>`<button class="tip" data-m="${esc(uid(v.m))}"><span class="n"><small>${esc(v.m.home)} vs ${esc(v.m.away)} · ${hm(v.m.kickoff)}</small><b>${esc(v.mk.sel)} @${v.o}</b></span><span class="p"><b class="pos">+${Math.round(v.e*100)}%</b><small>EV</small></span></button>`).join("")}</div></section>`:"";
-  const body=list.length?`<div class="group">${list.slice(0,15).map(t=>`<button class="tip" data-m="${esc(uid(t.m))}"><span class="n"><small>${esc(t.m.home)} vs ${esc(t.m.away)} · ${hm(t.m.kickoff)}</small><b>${esc(t.mk)} · ${esc(t.t)}</b></span><span class="p"><b>${pct(t.p)}</b><small>@${fair(t.p)}</small></span></button>`).join("")}</div>`:`<div class="empty"><b>ဖြစ်နိုင်ခြေ ၆၀% ကျော်တဲ့ ရွေးချယ်မှု မရှိသေးပါ</b></div>`;
-  return `${dayStrip()}${valHtml}<section class="sec"><div class="sec-h">ဖြစ်နိုင်ခြေ အမြင့်ဆုံး</div>${body}</section>`;
+  const body=list.length?`<div class="group">${list.slice(0,20).map(t=>`<button class="tip" data-m="${esc(uid(t.m))}"><span class="n"><small>${esc(t.m.home)} vs ${esc(t.m.away)} · ${hm(t.m.kickoff)}</small><b>${esc(t.mk)} · ${esc(t.t)}</b></span><span class="p"><b>${pct(t.p)}</b><small>@${fair(t.p)}</small></span></button>`).join("")}</div>`:`<div class="empty"><b>ဖြစ်နိုင်ခြေ ၆၀% ကျော်တဲ့ ရွေးချယ်မှု မရှိသေးပါ</b></div>`;
+  return `${dayStrip()}${chips}${maung}${valHtml}<section class="sec"><div class="sec-h">ဖြစ်နိုင်ခြေ အမြင့်ဆုံး</div>${body}</section>`;
 }
+
+/* ---------- share ---------- */
+function matchShareText(m){
+  const a=A(m),lines=[`${m.home} vs ${m.away} · ${dm(m.kickoff)} ${hm(m.kickoff)}`];
+  if(a.score)lines.push(`ခန့်မှန်းရလဒ် ${a.score.i}-${a.score.j}`+(a.pick&&a.pick.p!=null?` · ${a.pick.label} ${pct(a.pick.p)}`:""));
+  if(a.kyay&&(a.kyay.body||a.kyay.goal))lines.push([a.kyay.body?`ဘော်ဒီ ${a.kyay.body.team} ${a.kyay.body.txt}`:"",a.kyay.goal?`ဂိုးပေါင်း ${a.kyay.goal.txt}`:""].filter(Boolean).join(" · "));
+  const extra=a.markets.filter(x=>["o25","c","k"].includes(x.key)).map(x=>`${x.title.split(" · ")[0]} ${x.sel}`);if(extra.length)lines.push(extra.join(" · "));
+  return lines.join("\n");
+}
+function maungShareText(pick){
+  const pAll=pick.reduce((s,l)=>s*l.p,1),o=pick.reduce((s,l)=>s*(l.odds||l.fair),1);
+  return [`Maung Lab · မောင်း ${pick.length} ပွဲ`,...pick.map((l,i)=>`${i+1}. ${l.m.home} vs ${l.m.away} — ${l.mk} ${l.t} @${(l.odds||l.fair).toFixed(2)}`),`စုစုပေါင်း @${o.toFixed(2)} · ပေါက်နိုင်ခြေ ${(pAll*100).toFixed(1)}%`].join("\n");
+}
+function toast(t){let el=$("toast");if(!el){el=document.createElement("div");el.id="toast";el.className="toast";el.setAttribute("role","status");document.body.appendChild(el);}el.textContent=t;el.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("on"),2200);}
+async function shareOut(title,text,token){
+  const url=window.__mlPublic?location.origin+location.pathname+(token?"#"+token:""):"";
+  const full=url?text+"\n"+url:text;
+  if(window.__mlPublic&&navigator.share){try{await navigator.share({title,text,url:url||undefined});return;}catch(e){if(e&&e.name==="AbortError")return;}}
+  try{await navigator.clipboard.writeText(full);toast("ကူးယူပြီးပါပြီ — Telegram / Facebook မှာ paste လုပ်ပါ");}
+  catch(e){toast("ကူးယူလို့ မရပါ");}
+}
+
 function screenRecord(){
   const keys=["result","ah","goals","corners","fouls","cards","score"],lab={result:"ရလဒ်",ah:"ဘော်ဒီ",goals:"ဂိုး O/U 2.5",corners:"Corners",fouls:"Fouls",cards:"ဝါကတ်",score:"ဂိုးရလဒ် အတိအကျ"};
   const tot={};keys.forEach(k=>tot[k]={h:0,n:0});
@@ -556,6 +612,7 @@ function render(){
 }
 function openDetail(id){scrollY=window.scrollY;detail=id;dtab="pred";openMk=null;render();window.scrollTo(0,0);}
 function closeDetail(){detail=null;render();window.scrollTo(0,scrollY);}
+function openDeep(){const h=decodeURIComponent((location.hash||"").slice(1));if(!h||h.indexOf("~")<0)return false;const m=allMatches().find(x=>tokenOf(x)===h);if(!m)return false;sel=m._d;openDetail(uid(m));return true;}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&detail)closeDetail();});
 window.addEventListener("ml-install",()=>{if(!detail)topBar();});
 window.addEventListener("appinstalled",()=>{window.__mlInstall=null;if(!detail)topBar();});
@@ -563,6 +620,9 @@ $("view").addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
   if(b.dataset.day){sel=b.dataset.day;render();return;}
   if(b.dataset.lg){league=b.dataset.lg;render();return;}
+  if(b.dataset.tf){tipF=b.dataset.tf;render();return;}
+  if(b.dataset.mn){maungN=Math.max(5,Math.min(12,maungN+Number(b.dataset.mn)));try{localStorage.setItem("ml.maungN",String(maungN))}catch(e){}render();return;}
+  if(b.dataset.sharemaung){const pk=window.__mlMaung||[];if(pk.length)shareOut("Maung Lab · မောင်း",maungShareText(pk),"");return;}
   if(b.dataset.m){openDetail(b.dataset.m);return;}
   if(b.dataset.dt){dtab=b.dataset.dt;render();return;}
   if(b.dataset.mk){openMk=openMk===b.dataset.mk?null:b.dataset.mk;render();const i=$("odd-"+b.dataset.mk);if(i)i.focus();return;}
@@ -588,6 +648,7 @@ async function load(first){
     const docs=await Promise.all(dates.map(d=>fetch("data/days/"+d+".json?v="+encodeURIComponent(idx.updatedAt||""),{cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null)));
     DAYS=docs.filter(d=>d&&d.date).sort((x,y)=>String(x.date).localeCompare(String(y.date)));
     if(!sel||!DAYS.some(d=>d.date===sel)){const t=keyNow();const p=DAYS.find(d=>d.date>=t)||DAYS[DAYS.length-1];sel=p?p.date:null;}
+    if(first&&!openDeep.done){openDeep.done=true;if(openDeep())return;}
     const ae=document.activeElement;if(!first&&ae&&ae.tagName==="INPUT")return;
     render();
   }catch(e){if(first){$("view").innerHTML=`<div class="empty"><b>ဒေတာ ဖွင့်မရပါ</b>ခဏနေ ပြန်ဖွင့်ကြည့်ပါ</div>`;topBar();}}
@@ -596,6 +657,7 @@ load(true);setInterval(()=>{if(!document.hidden)load(false)},300000);
 })();
 </script>
 <script>
+window.__mlPublic=true;
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();window.__mlInstall=e;try{document.getElementById("bar")&&window.dispatchEvent(new Event("ml-install"))}catch(_){}});
 </script>
